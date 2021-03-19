@@ -19,6 +19,7 @@ namespace NoteApp
             using (StreamWriter sw = new StreamWriter(Filename))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
+                writer.Formatting = Formatting.Indented;
                 serializer.Serialize(writer, data);
             }
         }
