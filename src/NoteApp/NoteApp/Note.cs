@@ -106,13 +106,15 @@ namespace NoteApp
             }
         }
 
-        public Note(NoteCategory category, string text, string title = "Без названия")
+        public Note(NoteCategory category, string text, DateTime creationDateTime, 
+            DateTime lastChangeDateTime, string title = "Без названия")
+
         {
             Title = title;
             Category = category;
             Text = text;
-            CreationDateTime = DateTime.Now;
-            LastChangeDateTime = DateTime.Now;
+            CreationDateTime = creationDateTime;
+            LastChangeDateTime = lastChangeDateTime;
         }
 
         public object Clone()
