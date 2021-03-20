@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace NoteApp
 {
@@ -106,9 +107,16 @@ namespace NoteApp
             }
         }
 
-        public Note(NoteCategory category, string text, DateTime creationDateTime, 
-            DateTime lastChangeDateTime, string title = "Без названия")
 
+        public Note(NoteCategory category, string text, string title = "Без названия") : this(title,
+            category, text, DateTime.Now, DateTime.Now)
+        {
+
+        }
+
+        [JsonConstructor]
+        private Note(string title, NoteCategory category, string text, DateTime creationDateTime, 
+            DateTime lastChangeDateTime)
         {
             Title = title;
             Category = category;
