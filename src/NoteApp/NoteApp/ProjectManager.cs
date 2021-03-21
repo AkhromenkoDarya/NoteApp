@@ -10,13 +10,22 @@ namespace NoteApp
 {
     public static class ProjectManager
     {
-        private const string Filename = @"..\My Documents\NoteApp.notes";
+        private const string Filename = "NoteApp.notes";
 
-        public static void SaveToFile(Project data)
+        public static string DefaultPath { get; set; } = 
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), 
+                "NoteApp", Filename);
+
+        public static void SaveToFile(Project data, string path)
         {
+            if(!Directory.Exists(Path.GetDirectoryName(path)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(path));
+            }
+
             JsonSerializer serializer = new JsonSerializer();
 
-            using (StreamWriter sw = new StreamWriter(Filename))
+            using (StreamWriter sw = new StreamWriter(path))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
                 writer.Formatting = Formatting.Indented;
@@ -24,19 +33,31 @@ namespace NoteApp
             }
         }
 
-        public static Project LoadFromFile()
+        public static Project LoadFromFile(string path)
         {
-            var project = new Project();
+            Project project = null;
 
             JsonSerializer serializer = new JsonSerializer();
 
-            using (StreamReader sr = new StreamReader(Filename))
-            using (JsonReader reader = new JsonTextReader(sr))
+            if (!File.Exists(path))
             {
-                project = serializer.Deserialize<Project>(reader);
+                return new Project();
             }
 
-            return project;
+            try
+            {
+                using (StreamReader sr = new StreamReader(path))
+                using (JsonReader reader = new JsonTextReader(sr))
+                {
+                    project = serializer.Deserialize<Project>(reader);
+                }
+            }
+            catch(Exception)
+            {
+                return new Project();
+            }
+
+            return project ?? new Project();
         }
     }
 }
