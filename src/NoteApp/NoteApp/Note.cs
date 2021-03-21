@@ -41,7 +41,7 @@ namespace NoteApp
                 else
                 {
                     _title = value;
-                    SetLastChangeDateTime();
+                    UpdateLastChangeDateTime();
                 }
             }
         }
@@ -56,7 +56,7 @@ namespace NoteApp
             set
             {
                 _category = value;
-                SetLastChangeDateTime();
+                UpdateLastChangeDateTime();
             }
         }
 
@@ -76,7 +76,7 @@ namespace NoteApp
                 else
                 {
                     _text = value;
-                    SetLastChangeDateTime();
+                    UpdateLastChangeDateTime();
                 }
             }
         }
@@ -107,7 +107,7 @@ namespace NoteApp
             return MemberwiseClone();
         }
 
-        private void SetLastChangeDateTime()
+        private void UpdateLastChangeDateTime()
         {
             LastChangeDateTime = DateTime.Now;
         }
