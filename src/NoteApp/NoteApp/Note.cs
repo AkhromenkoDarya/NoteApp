@@ -81,32 +81,9 @@ namespace NoteApp
             }
         }
 
-        public DateTime CreationDateTime
-        {
-            get
-            {
-                return _creationDateTime;
-            }
+        public DateTime CreationDateTime { get; private set; }
 
-            private set
-            {
-                _creationDateTime = value;
-            }
-        }
-
-        public DateTime LastChangeDateTime
-        {
-            get
-            {
-                return _lastChangeDateTime;
-            }
-
-            private set
-            {
-                _lastChangeDateTime = value;
-            }
-        }
-
+        public DateTime LastChangeDateTime { get; private set; }
 
         public Note(NoteCategory category, string text, string title = "Без названия") : this(title,
             category, text, DateTime.Now, DateTime.Now)
