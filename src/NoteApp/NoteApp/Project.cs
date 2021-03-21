@@ -8,24 +8,6 @@ namespace NoteApp
 {
     public class Project
     {
-        List<Note> _notes = null;
-
-        public List<Note> Notes
-        {
-            get 
-            {
-                return _notes;
-            }
-
-            private set
-            {
-                _notes = value;
-            }
-        }
-
-        public Project()
-        {
-            Notes = new List<Note>();
-        }
-    }
+        public List<Note> Notes { get; private set; } = new List<Note>();
+    } 
 }
