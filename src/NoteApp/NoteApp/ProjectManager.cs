@@ -10,19 +10,19 @@ namespace NoteApp
 {
     /// <summary>
     /// <para>Класс "Менеджер проекта".</para>
-    /// <para>Реализует метод для сохранения экземпляра класса <see cref="Project"/> 
-    /// в файл и метод загрузки проекта из файла.</para>
+    /// <para>Реализует метод для сохранения объекта класса <see cref="Project"/> 
+    /// в файл и метод загрузки объекта <see cref="Project"/> из файла.</para>
     /// </summary>
     public static class ProjectManager
     {
         /// <summary>
-        /// Имя файла, в который осуществляется сохранение и из которого производится
-        /// загрузка экземпляра класса <see cref="Project"/>.
+        /// Имя файла, в который осуществляется сохранение и из которого производится загрузка 
+        /// объекта класса <see cref="Project"/>.
         /// </summary>
         private const string Filename = "NoteApp.notes";
 
         /// <summary>
-        /// Путь по умолчанию к файлу, имя которого задано закрытой константой 
+        /// Возвращает и задает путь по умолчанию к файлу, имя которого задано закрытой константой 
         /// <see cref="Filename"/>. 
         /// </summary>
         public static string DefaultPath { get; set; } = 
@@ -30,15 +30,18 @@ namespace NoteApp
                 "NoteApp", Filename);
 
         /// <summary>
-        /// Метод, осуществляющий сохранение экземпляра класса <see cref="Project"/>
-        /// в файл, имя которого задано закрытой константой <see cref="Filename"/>.
+        /// Метод, осуществляющий сохранение объекта класса <see cref="Project"/> в файл, имя 
+        /// которого задано закрытой константой <see cref="Filename"/>.
         /// </summary>
-        /// <param name="path"><para>Путь к файлу, в который осуществляется сохранение 
-        /// данных.</para> 
+        /// <param name="data">Объект класса "Проект", который требуется сериализовать.</param>
+        /// <param name="path"><para>Путь к файлу, в который осуществляется сохранение данных.</para> 
         /// <para>Путь по умолчанию указан в <see cref="DefaultPath"/>.</para></param>
-        /// <param name="path"></param>
         public static void SaveToFile(Project data, string path)
         {
+            // Если какой-либо каталог (и/или подкаталоги), указанные в пути к файлу, в который
+            // необходимо сохранить данные, не существует, то предварительно создаем этот каталог
+            // (и/или подкаталоги).
+            //
             if(!Directory.Exists(Path.GetDirectoryName(path)))
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
@@ -49,30 +52,38 @@ namespace NoteApp
             using (StreamWriter sw = new StreamWriter(path))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
-                writer.Formatting = Formatting.Indented;
+                // Настраиваем форматирование в итоговом файле (автоматическую табуляцию вложенных
+                // типов) для лучшего восприятия текста.
+                serializer.Formatting = Formatting.Indented;
+
                 serializer.Serialize(writer, data);
             }
         }
 
         /// <summary>
-        /// Метод, осуществляющий загрузку данных из файла, имя которого задано закрытой
-        /// константой <see cref="Filename"/>, в экземпляр класса <see cref="Project"/>.
+        /// Метод, осуществляющий загрузку данных из файла, имя которого задано закрытой константой 
+        /// <see cref="Filename"/>, в объект класса <see cref="Project"/>.
         /// </summary>
-        /// <param name="path"><para>Путь к файлу, из которого осуществляется загрузка 
-        /// данных.</para> 
+        /// <param name="path"><para>Путь к файлу, из которого осуществляется загрузка данных.</para> 
         /// <para>Путь по умолчанию указан в <see cref="DefaultPath"/>.</para></param>
-        /// <returns>Экземпляр класса <see cref="Project"/>.</returns>
+        /// <returns>Объект класса <see cref="Project"/>, в который помещен результат десериализации.</returns>
         public static Project LoadFromFile(string path)
         {
             Project project = null;
 
-            JsonSerializer serializer = new JsonSerializer();
-
+            // Если файл, из которого необходимо загрузить данные, не существует, то возвращаем объект
+            // класса Project, созданный конструктором по умолчанию.
+            //
             if (!File.Exists(path))
             {
                 return new Project();
             }
 
+            JsonSerializer serializer = new JsonSerializer();
+
+            // В случае возникновения любых исключений в процессе открытия потока для чтения из файла
+            // также возвращаем объект класса Project, созданный конструктором по умолчанию.
+            //
             try
             {
                 using (StreamReader sr = new StreamReader(path))
@@ -81,11 +92,12 @@ namespace NoteApp
                     project = serializer.Deserialize<Project>(reader);
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return new Project();
             }
 
+            // Метод в любом случае должен возвращать объект класса Project.
             return project ?? new Project();
         }
     }
