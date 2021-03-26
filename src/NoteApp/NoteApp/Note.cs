@@ -8,9 +8,9 @@ using Newtonsoft.Json;
 namespace NoteApp
 {
     /// <summary>
-    /// <para>Класс "Заметка".</para>
+    /// <para>Текстовая заметка пользователя.</para>
     /// <para>Хранит информацию о названии, категории, тексте, времени создания и времени 
-    /// последнего изменения текстовой заметки пользователя.</para>
+    /// последнего изменения заметки.</para>
     /// <para>Реализует интерфейс <see cref="ICloneable"/>.</para>
     /// </summary>
     public class Note : ICloneable
@@ -112,13 +112,11 @@ namespace NoteApp
         public DateTime ModificationTime { get; private set; }
 
         /// <summary>
-        /// Создает экземпляр класса <see cref="Note"/>.
+        /// Создает экземпляр <see cref="Note"/>.
         /// </summary>
         /// <param name="category"><para>Категория заметки.</para> 
-        /// <para>Может принимать одно из следующих значений, содержащихся в перечислении 
-        /// "Категория заметки":</para> 
-        /// <para>"Работа", "Дом", "Здоровье и Спорт", "Люди", "Документы", "Финансы",
-        /// "Разное".</para></param>
+        /// <para>Может принимать одно из следующих значений: "Работа", "Дом", "Здоровье и спорт", 
+        /// "Люди", "Документы", "Финансы", "Разное".</param>
         /// <param name="text">Текст заметки.</param>
         /// <param name="title">Название заметки. Ограничено 50 символами.</param>
         public Note(NoteCategory category, string text, string title = "Без названия") :
@@ -128,13 +126,12 @@ namespace NoteApp
         }
 
         /// <summary>
-        /// Создает экземпляр класса <see cref="Note"/>.
+        /// Создает экземпляр <see cref="Note"/>.
         /// </summary>
         /// <param name="title">Название заметки. Ограничено 50 символами.</param>
         /// <param name="category"><para>Категория заметки.</para> 
-        /// <para>Может принимать одно из следующих значений, содержащихся в перечислении 
-        /// "Категория заметки":</para> 
-        /// <para>"Работа", "Дом", "Здоровье и Спорт", "Люди", "Документы", "Финансы",
+        /// <para>Может принимать одно из следующих значений: "Работа", "Дом", "Здоровье и спорт", 
+        /// "Люди", "Документы", "Финансы",
         /// "Разное".</para></param>
         /// <param name="text">Текст заметки.</param>
         /// <param name="creationTime">Время создания заметки.</param>
@@ -152,9 +149,9 @@ namespace NoteApp
 
         /// <summary>
         /// Метод, реализующий интерфейс <see cref="ICloneable"/> для создания копии 
-        /// экземпляра класса <see cref="Note"/>.
+        /// объекта <see cref="Note"/>.
         /// </summary>
-        /// <returns> Поверхностная копия экземпляра класса <see cref="Note"/>.</returns>
+        /// <returns> Поверхностная копия объекта <see cref="Note"/>.</returns>
         public object Clone()
         {
             return MemberwiseClone();

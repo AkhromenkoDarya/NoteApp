@@ -9,15 +9,15 @@ using Newtonsoft.Json;
 namespace NoteApp
 {
     /// <summary>
-    /// <para>Класс "Менеджер проекта".</para>
-    /// <para>Реализует метод для сохранения объекта класса <see cref="Project"/> 
-    /// в файл и метод загрузки объекта <see cref="Project"/> из файла.</para>
+    /// <para>Менеджер проекта.</para>
+    /// <para>Реализует метод для сохранения объекта <see cref="Project"/> в файл и метод загрузки 
+    /// объекта <see cref="Project"/> из файла.</para>
     /// </summary>
     public static class ProjectManager
     {
         /// <summary>
         /// Имя файла, в который осуществляется сохранение и из которого производится загрузка 
-        /// объекта класса <see cref="Project"/>.
+        /// объекта <see cref="Project"/>.
         /// </summary>
         private const string Filename = "NoteApp.notes";
 
@@ -30,10 +30,10 @@ namespace NoteApp
                 "NoteApp", Filename);
 
         /// <summary>
-        /// Метод, осуществляющий сохранение объекта класса <see cref="Project"/> в файл, имя 
-        /// которого задано закрытой константой <see cref="Filename"/>.
+        /// Метод, осуществляющий сохранение объекта <see cref="Project"/> в файл, имя которого задано 
+        /// закрытой константой <see cref="Filename"/>.
         /// </summary>
-        /// <param name="data">Объект класса "Проект", который требуется сериализовать.</param>
+        /// <param name="data">Объект "Проект", который требуется сериализовать.</param>
         /// <param name="path"><para>Путь к файлу, в который осуществляется сохранение данных.</para> 
         /// <para>Путь по умолчанию указан в <see cref="DefaultPath"/>.</para></param>
         public static void SaveToFile(Project data, string path)
@@ -62,11 +62,11 @@ namespace NoteApp
 
         /// <summary>
         /// Метод, осуществляющий загрузку данных из файла, имя которого задано закрытой константой 
-        /// <see cref="Filename"/>, в объект класса <see cref="Project"/>.
+        /// <see cref="Filename"/>, в объект <see cref="Project"/>.
         /// </summary>
         /// <param name="path"><para>Путь к файлу, из которого осуществляется загрузка данных.</para> 
         /// <para>Путь по умолчанию указан в <see cref="DefaultPath"/>.</para></param>
-        /// <returns>Объект класса <see cref="Project"/>, в который помещен результат десериализации.</returns>
+        /// <returns>Объект <see cref="Project"/>, в который помещен результат десериализации.</returns>
         public static Project LoadFromFile(string path)
         {
             Project project = null;

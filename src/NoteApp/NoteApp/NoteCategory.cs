@@ -7,42 +7,42 @@ using System.Threading.Tasks;
 namespace NoteApp
 {
     /// <summary>
-    /// Перечисление "Категория заметки".
+    /// Категория заметки.
     /// </summary>
     public enum NoteCategory
     {
         /// <summary>
-        /// Категория "Документы".
+        /// "Документы".
         /// </summary>
         Documents,
 
         /// <summary>
-        /// Категория "Финансы".
+        /// "Финансы".
         /// </summary>
         Finance,
 
         /// <summary>
-        /// Категория "Здоровье и Спорт".
+        /// "Здоровье и спорт".
         /// </summary>
         HealthAndSport,
 
         /// <summary>
-        /// Категория "Дом".
+        /// "Дом".
         /// </summary>
         Home,
 
         /// <summary>
-        /// Категория "Люди".
+        /// "Люди".
         /// </summary>
         People,
 
         /// <summary>
-        /// Категория "Разное".
+        /// "Разное".
         /// </summary>
         Sundry,
 
         /// <summary>
-        /// Категория "Работа".
+        /// "Работа".
         /// </summary>
         Work
     }
