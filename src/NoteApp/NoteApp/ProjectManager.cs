@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
 
@@ -42,20 +38,17 @@ namespace NoteApp
             // необходимо сохранить данные, не существует, то предварительно создаем этот каталог
             // (и/или подкаталоги).
             //
-            if(!Directory.Exists(Path.GetDirectoryName(path)))
+            if (!Directory.Exists(Path.GetDirectoryName(path)))
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
             }
 
             JsonSerializer serializer = new JsonSerializer();
+            ConfigureSettings(serializer);
 
             using (StreamWriter sw = new StreamWriter(path))
             using (JsonWriter writer = new JsonTextWriter(sw))
             {
-                // Настраиваем форматирование в итоговом файле (автоматическую табуляцию вложенных
-                // типов) для лучшего восприятия текста.
-                serializer.Formatting = Formatting.Indented;
-
                 serializer.Serialize(writer, data);
             }
         }
@@ -80,6 +73,7 @@ namespace NoteApp
             }
 
             JsonSerializer serializer = new JsonSerializer();
+            ConfigureSettings(serializer);
 
             // В случае возникновения любых исключений в процессе открытия потока для чтения из файла
             // также возвращаем объект класса Project, созданный конструктором по умолчанию.
@@ -99,6 +93,18 @@ namespace NoteApp
 
             // Метод в любом случае должен возвращать объект класса Project.
             return project ?? new Project();
+        }
+
+        /// <summary>
+        /// Метод, задающий настройки для форматирования результирующего файла JSON.
+        /// </summary>
+        /// <param name="serializer"> Объект класса <see cref="JsonSerializer"/>, для которого 
+        /// необходимо задать настройки.</param>
+        static void ConfigureSettings(JsonSerializer serializer)
+        {
+            // Настраиваем форматирование в итоговом файле (автоматическую табуляцию вложенных
+            // типов) для лучшего восприятия текста.
+            serializer.Formatting = Formatting.Indented;
         }
     }
 }

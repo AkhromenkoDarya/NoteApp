@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace NoteApp
@@ -56,8 +52,6 @@ namespace NoteApp
                 else
                 {
                     _title = value;
-
-                    // Обновляем время последнего изменения заметки при изменении ее названия.
                     ModifyTime();
                 }
             }
@@ -76,8 +70,6 @@ namespace NoteApp
             set
             {
                 _category = value;
-
-                // Обновляем время последнего изменения заметки при изменении ее категории.
                 ModifyTime();
             }
         }
@@ -95,8 +87,6 @@ namespace NoteApp
             set
             {
                 _text = value;
-
-                // Обновляем время последнего изменения заметки при изменении ее текста.
                 ModifyTime();
             }
         }

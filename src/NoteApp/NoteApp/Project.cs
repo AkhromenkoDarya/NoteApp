@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace NoteApp
 {
@@ -17,6 +13,6 @@ namespace NoteApp
         /// <summary>
         /// Возвращает и задает список всех заметок.
         /// </summary>
-        public List<Note> Notes { get; private set; } = new List<Note>();
+        public List<Note> Notes { get; } = new List<Note>();
     } 
 }
