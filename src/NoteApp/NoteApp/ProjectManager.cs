@@ -100,7 +100,7 @@ namespace NoteApp
         /// </summary>
         /// <param name="serializer"> Объект класса <see cref="JsonSerializer"/>, для которого 
         /// необходимо задать настройки.</param>
-        static void ConfigureSettings(JsonSerializer serializer)
+        private static void ConfigureSettings(JsonSerializer serializer)
         {
             // Настраиваем форматирование в итоговом файле (автоматическую табуляцию вложенных
             // типов) для лучшего восприятия текста.
