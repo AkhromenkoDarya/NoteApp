@@ -6,8 +6,9 @@ namespace NoteApp
 {
     /// <summary>
     /// <para>Менеджер проекта.</para>
-    /// <para>Реализует метод для сохранения объекта <see cref="Project"/> в файл и метод загрузки 
-    /// объекта <see cref="Project"/> из файла.</para>
+    /// <para>Реализует метод для сохранения объекта <see cref="Project"/> в файл, метод загрузки 
+    /// объекта <see cref="Project"/> из файла, а также метод, задающий настройки для форматирования
+    /// результирующего файла.</para>
     /// </summary>
     public static class ProjectManager
     {
