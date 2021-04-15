@@ -46,8 +46,8 @@ namespace NoteApp
                 {
                     // ...бросаем исключение, сообщающее, что аргумент, передаваемый свойству,
                     // является недопустимым.
-                    throw new ArgumentException("Название должно содержать не более 50 " +
-                        "символов.");
+                    throw new ArgumentException("The title of the note should contain no more " +
+                        "than 50 characters.");
                 }
                 else
                 {
@@ -109,10 +109,10 @@ namespace NoteApp
         /// "Люди", "Документы", "Финансы", "Разное".</param>
         /// <param name="text">Текст заметки.</param>
         /// <param name="title">Название заметки. Ограничено 50 символами.</param>
-        public Note(NoteCategory category, string text, string title = "Без названия") :
+        public Note(string title = "Без названия", NoteCategory? category = null, string text = "") :
             this(title, category, text, DateTime.Now, DateTime.Now)
         {
-
+            
         }
 
         /// <summary>
@@ -127,11 +127,11 @@ namespace NoteApp
         /// <param name="creationTime">Время создания заметки.</param>
         /// <param name="modificationTime">Время последнего изменения заметки.</param>
         [JsonConstructor]
-        private Note(string title, NoteCategory category, string text, DateTime creationTime,
+        private Note(string title, NoteCategory? category, string text, DateTime creationTime,
             DateTime modificationTime)
         {
             Title = title;
-            Category = category;
+            Category = category ?? (NoteCategory)Enum.GetValues(typeof(NoteCategory)).GetValue(0);
             Text = text;
             CreationTime = creationTime;
             ModificationTime = modificationTime;
@@ -145,6 +145,15 @@ namespace NoteApp
         public object Clone()
         {
             return MemberwiseClone();
+        }
+
+        /// <summary>
+        /// Метод, возвращающий строковое представление названия заметки.
+        /// </summary>
+        /// <returns>Строковое представление <see cref="Title"/>.</returns>
+        public override string ToString()
+        {
+            return Title;
         }
 
         /// <summary>

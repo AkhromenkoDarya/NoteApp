@@ -117,6 +117,7 @@ namespace NoteAppUI
             this.Controls.Add(this.NameLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AboutForm";
             this.Padding = new System.Windows.Forms.Padding(15);
             this.ShowIcon = false;

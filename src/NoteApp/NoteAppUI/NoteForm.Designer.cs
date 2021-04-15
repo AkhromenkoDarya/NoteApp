@@ -47,7 +47,7 @@ namespace NoteAppUI
             this.CreationTimeDateTimePicker.CustomFormat = "dd.MM.yyyy    HH:mm";
             this.CreationTimeDateTimePicker.Enabled = false;
             this.CreationTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.CreationTimeDateTimePicker.Location = new System.Drawing.Point(357, 73);
+            this.CreationTimeDateTimePicker.Location = new System.Drawing.Point(90, 73);
             this.CreationTimeDateTimePicker.Name = "CreationTimeDateTimePicker";
             this.CreationTimeDateTimePicker.Size = new System.Drawing.Size(172, 22);
             this.CreationTimeDateTimePicker.TabIndex = 1;
@@ -77,7 +77,7 @@ namespace NoteAppUI
             this.ModificationTimeDateTimePicker.CustomFormat = "dd.MM.yyyy    HH:mm";
             this.ModificationTimeDateTimePicker.Enabled = false;
             this.ModificationTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.ModificationTimeDateTimePicker.Location = new System.Drawing.Point(90, 73);
+            this.ModificationTimeDateTimePicker.Location = new System.Drawing.Point(357, 73);
             this.ModificationTimeDateTimePicker.Name = "ModificationTimeDateTimePicker";
             this.ModificationTimeDateTimePicker.Size = new System.Drawing.Size(172, 22);
             this.ModificationTimeDateTimePicker.TabIndex = 1;
@@ -106,11 +106,13 @@ namespace NoteAppUI
             // 
             this.TitleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.TitleTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.TitleTextBox.Location = new System.Drawing.Point(90, 15);
             this.TitleTextBox.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(693, 22);
             this.TitleTextBox.TabIndex = 4;
+            this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             // 
             // CategoryComboBox
             // 
@@ -119,6 +121,7 @@ namespace NoteAppUI
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(234, 24);
             this.CategoryComboBox.TabIndex = 5;
+            this.CategoryComboBox.SelectionChangeCommitted += new System.EventHandler(this.CategoryComboBox_SelectionChangeCommitted);
             // 
             // TextBox
             // 
@@ -132,6 +135,7 @@ namespace NoteAppUI
             this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextBox.Size = new System.Drawing.Size(768, 455);
             this.TextBox.TabIndex = 6;
+            this.TextBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // OKButton
             // 
@@ -143,6 +147,7 @@ namespace NoteAppUI
             this.OKButton.TabIndex = 7;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // CancelChangesButton
             // 
@@ -154,6 +159,7 @@ namespace NoteAppUI
             this.CancelChangesButton.TabIndex = 8;
             this.CancelChangesButton.Text = "Cancel";
             this.CancelChangesButton.UseVisualStyleBackColor = true;
+            this.CancelChangesButton.Click += new System.EventHandler(this.CancelChangesButton_Click);
             // 
             // NoteForm
             // 
@@ -175,8 +181,9 @@ namespace NoteAppUI
             this.Name = "NoteForm";
             this.Padding = new System.Windows.Forms.Padding(15);
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add/Edit Note";
+            this.Load += new System.EventHandler(this.NoteForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
