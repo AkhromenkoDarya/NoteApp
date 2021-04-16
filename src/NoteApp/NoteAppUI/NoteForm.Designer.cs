@@ -29,6 +29,7 @@ namespace NoteAppUI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.CreationTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.CreationTimeLabel = new System.Windows.Forms.Label();
             this.ModificationTimeLabel = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@ namespace NoteAppUI
             this.TextBox = new System.Windows.Forms.TextBox();
             this.OKButton = new System.Windows.Forms.Button();
             this.CancelChangesButton = new System.Windows.Forms.Button();
+            this.TitleToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // CreationTimeDateTimePicker
@@ -113,6 +115,8 @@ namespace NoteAppUI
             this.TitleTextBox.Size = new System.Drawing.Size(693, 22);
             this.TitleTextBox.TabIndex = 4;
             this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
+            this.TitleTextBox.MouseLeave += new System.EventHandler(this.TitleTextBox_MouseLeave);
+            this.TitleTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TitleTextBox_MouseMove);
             // 
             // CategoryComboBox
             // 
@@ -159,7 +163,7 @@ namespace NoteAppUI
             this.CancelChangesButton.TabIndex = 8;
             this.CancelChangesButton.Text = "Cancel";
             this.CancelChangesButton.UseVisualStyleBackColor = true;
-            this.CancelChangesButton.Click += new System.EventHandler(this.CancelChangesButton_Click);
+            this.CancelChangesButton.Click += new System.EventHandler(this.CancelChangesButton_Click); 
             // 
             // NoteForm
             // 
@@ -181,7 +185,7 @@ namespace NoteAppUI
             this.Name = "NoteForm";
             this.Padding = new System.Windows.Forms.Padding(15);
             this.ShowIcon = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add/Edit Note";
             this.Load += new System.EventHandler(this.NoteForm_Load);
             this.ResumeLayout(false);
@@ -201,5 +205,6 @@ namespace NoteAppUI
         private System.Windows.Forms.TextBox TextBox;
         private System.Windows.Forms.Button OKButton;
         private System.Windows.Forms.Button CancelChangesButton;
+        private System.Windows.Forms.ToolTip TitleToolTip;
     }
 }

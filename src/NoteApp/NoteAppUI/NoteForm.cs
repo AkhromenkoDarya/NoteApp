@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Drawing;
 using NoteApp;
 
 namespace NoteAppUI
@@ -32,7 +33,7 @@ namespace NoteAppUI
         }
 
         /// <summary>
-        /// Создает экземпляр класса <see cref="NoteForm"/>.
+        /// Создает экземпляр <see cref="NoteForm"/>.
         /// </summary>
         /// <param name="note"> Текстовая заметка пользователя.</param>
         public NoteForm(Note note)
@@ -43,22 +44,15 @@ namespace NoteAppUI
 
         private void NoteForm_Load(object sender, EventArgs e)
         {
+            // При загрузке окна добавления/редактирования заметки предварительно заполняем
+            // все поля данными заметки.
+            //
             TitleTextBox.Text = Note.Title;
-            CategoryComboBox.DataSource = Enum.GetValues(typeof(NoteCategory));
 
-            // Если пользователь добавляет новую заметку (т.е. если время ее создания совпадает
-            // с текущим временем с точностью до секунд), то при загрузке окна не заполняем текущий
-            // элемент выпадающего списка с категориями заметки. Иначе, если пользователь редактирует
-            // ранее созданную заметку, выбранным элементом списка будет текущая категория этой заметки.
-            // 
-            if (Note.CreationTime.ToString("ddMMyyyyHHmmss") == DateTime.Now.ToString("ddMMyyyyHHmmss"))
-            {
-                CategoryComboBox.SelectedIndex = -1;
-            }
-            else
-            {
-                CategoryComboBox.SelectedIndex = (int)Note.Category;
-            }
+            // Для возможности выбора пользователем категории заметки "привязываем" к выпадающему
+            // списку перечисление с возможными категориями.
+            CategoryComboBox.DataSource = Enum.GetValues(typeof(NoteCategory));
+            CategoryComboBox.SelectedItem = Note.Category;
 
             TextBox.Text = Note.Text;
             CreationTimeDateTimePicker.Value = Note.CreationTime;
@@ -67,19 +61,58 @@ namespace NoteAppUI
 
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
         {
-            Note.Title = TitleTextBox.Text;
-            ModificationTimeDateTimePicker.Value = Note.ModificationTime;
+            try
+            {
+                Note.Title = TitleTextBox.Text;
+                ModificationTimeDateTimePicker.Value = Note.ModificationTime;
+
+                // Восстанавливаем "нормальный" цвет фона текстового поля с названием заметки,
+                // если значение поля корректно.
+                TitleTextBox.BackColor = Color.Empty;
+            }
+            catch (ArgumentException)
+            {
+                // В случае некорректной длины названия заметки подсвечиваем текстовое поле
+                // с ее названием заметки красным цветом.
+                TitleTextBox.BackColor = Color.Salmon;
+            }
+        }
+
+        private void TitleTextBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                // В случае, если в текстовое поле с названием заметки введено корректное
+                // значение, скрываем всплывающую подсказку.
+                // 
+                Note.Title = TitleTextBox.Text;
+                TitleToolTip.Active = false;
+            }
+            catch (ArgumentException exception)
+            {
+                // В случае, если в текстовое поле с названием заметки введено некорректное
+                // значение, отображаем пользователю всплывающую подсказку с текстом ошибки.
+                //  
+                TitleToolTip.Active = true;
+                TitleToolTip.Show(exception.Message, this, new Point(TitleTextBox.Left + e.X,
+                    TitleTextBox.Top + e.Y), int.MaxValue);
+            }
+        }
+
+        private void TitleTextBox_MouseLeave(object sender, EventArgs e)
+        {
+            // Если курсор мыши покидает пределы текстового поля с названием заметки, которое
+            // является некорректным, скрываем всплывающую подсказку с текстом ошибки.
+            if (TitleToolTip.Active)
+            {
+                TitleToolTip.Hide(this);
+            }
         }
 
         private void CategoryComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            // Если категория заметки на данный момент не выбрана из списка категорий, в таком
-            // случае оставляем категорию заметки без изменений.
-            if (CategoryComboBox.SelectedIndex != -1)
-            {
-                Note.Category = (NoteCategory)CategoryComboBox.SelectedItem;
-                ModificationTimeDateTimePicker.Value = Note.ModificationTime;
-            }
+            Note.Category = (NoteCategory)CategoryComboBox.SelectedItem;
+            ModificationTimeDateTimePicker.Value = Note.ModificationTime;
         }
 
         private void TextBox_TextChanged(object sender, EventArgs e)
@@ -90,8 +123,20 @@ namespace NoteAppUI
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
-            Close();
+            try
+            {
+                Note.Title = TitleTextBox.Text;
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch(ArgumentException exception)
+            {
+                // Если какие-либо указанные пользователем данные некорректны, отображаем окно
+                // со списком ошибок, которые необходимо исправить, чтобы можно было сохранить
+                // изменения для текущей заметки.
+                MessageBox.Show("You need to correct the following data:\n\n" + exception.Message,
+                    "Error List", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void CancelChangesButton_Click(object sender, EventArgs e)
