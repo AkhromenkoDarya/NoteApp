@@ -113,7 +113,7 @@ namespace NoteAppUI
             this.TitleTextBox.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(693, 22);
-            this.TitleTextBox.TabIndex = 4;
+            this.TitleTextBox.TabIndex = 0;
             this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             this.TitleTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TitleTextBox_MouseEnter);
             // 
@@ -123,7 +123,7 @@ namespace NoteAppUI
             this.CategoryComboBox.Location = new System.Drawing.Point(90, 43);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(234, 24);
-            this.CategoryComboBox.TabIndex = 5;
+            this.CategoryComboBox.TabIndex = 1;
             this.CategoryComboBox.SelectionChangeCommitted += new System.EventHandler(this.CategoryComboBox_SelectionChangeCommitted);
             // 
             // TextBox
@@ -137,7 +137,7 @@ namespace NoteAppUI
             this.TextBox.Name = "TextBox";
             this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextBox.Size = new System.Drawing.Size(768, 455);
-            this.TextBox.TabIndex = 6;
+            this.TextBox.TabIndex = 3;
             this.TextBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // OKButton
@@ -147,7 +147,7 @@ namespace NoteAppUI
             this.OKButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(100, 30);
-            this.OKButton.TabIndex = 7;
+            this.OKButton.TabIndex = 4;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
             this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
@@ -159,10 +159,10 @@ namespace NoteAppUI
             this.CancelChangesButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.CancelChangesButton.Name = "CancelChangesButton";
             this.CancelChangesButton.Size = new System.Drawing.Size(100, 30);
-            this.CancelChangesButton.TabIndex = 8;
+            this.CancelChangesButton.TabIndex = 5;
             this.CancelChangesButton.Text = "Cancel";
             this.CancelChangesButton.UseVisualStyleBackColor = true;
-            this.CancelChangesButton.Click += new System.EventHandler(this.CancelChangesButton_Click); 
+            this.CancelChangesButton.Click += new System.EventHandler(this.CancelChangesButton_Click);
             // 
             // NoteForm
             // 
