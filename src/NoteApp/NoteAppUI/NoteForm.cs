@@ -78,7 +78,7 @@ namespace NoteAppUI
             }
         }
 
-        private void TitleTextBox_MouseMove(object sender, MouseEventArgs e)
+        private void TitleTextBox_MouseEnter(object sender, MouseEventArgs e)
         {
             try
             {
@@ -94,18 +94,7 @@ namespace NoteAppUI
                 // значение, отображаем пользователю всплывающую подсказку с текстом ошибки.
                 //  
                 TitleToolTip.Active = true;
-                TitleToolTip.Show(exception.Message, this, new Point(TitleTextBox.Left + e.X,
-                    TitleTextBox.Top + e.Y), int.MaxValue);
-            }
-        }
-
-        private void TitleTextBox_MouseLeave(object sender, EventArgs e)
-        {
-            // Если курсор мыши покидает пределы текстового поля с названием заметки, которое
-            // является некорректным, скрываем всплывающую подсказку с текстом ошибки.
-            if (TitleToolTip.Active)
-            {
-                TitleToolTip.Hide(this);
+                TitleToolTip.SetToolTip(TitleTextBox, exception.Message);
             }
         }
 

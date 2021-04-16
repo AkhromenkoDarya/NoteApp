@@ -115,8 +115,7 @@ namespace NoteAppUI
             this.TitleTextBox.Size = new System.Drawing.Size(693, 22);
             this.TitleTextBox.TabIndex = 4;
             this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
-            this.TitleTextBox.MouseLeave += new System.EventHandler(this.TitleTextBox_MouseLeave);
-            this.TitleTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TitleTextBox_MouseMove);
+            this.TitleTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TitleTextBox_MouseEnter);
             // 
             // CategoryComboBox
             // 
