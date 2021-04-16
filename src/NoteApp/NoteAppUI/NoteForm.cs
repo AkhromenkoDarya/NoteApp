@@ -28,7 +28,14 @@ namespace NoteAppUI
 
             private set
             {
-                _note = value;
+                if(value != null)
+                {
+                    _note = value;
+                }
+                else
+                {
+                    throw new NullReferenceException();
+                }
             }
         }
 
@@ -40,6 +47,10 @@ namespace NoteAppUI
         {
             InitializeComponent();
             Note = note;
+
+            // Для возможности выбора пользователем категории заметки "привязываем" к выпадающему
+            // списку перечисление с возможными категориями.
+            CategoryComboBox.DataSource = Enum.GetValues(typeof(NoteCategory));
         }
 
         private void NoteForm_Load(object sender, EventArgs e)
@@ -48,12 +59,7 @@ namespace NoteAppUI
             // все поля данными заметки.
             //
             TitleTextBox.Text = Note.Title;
-
-            // Для возможности выбора пользователем категории заметки "привязываем" к выпадающему
-            // списку перечисление с возможными категориями.
-            CategoryComboBox.DataSource = Enum.GetValues(typeof(NoteCategory));
             CategoryComboBox.SelectedItem = Note.Category;
-
             TextBox.Text = Note.Text;
             CreationTimeDateTimePicker.Value = Note.CreationTime;
             ModificationTimeDateTimePicker.Value = Note.ModificationTime;
@@ -124,7 +130,7 @@ namespace NoteAppUI
                 // со списком ошибок, которые необходимо исправить, чтобы можно было сохранить
                 // изменения для текущей заметки.
                 MessageBox.Show("You need to correct the following data:\n\n" + exception.Message,
-                    "Error List", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    "Error List", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

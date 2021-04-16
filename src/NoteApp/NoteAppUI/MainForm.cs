@@ -45,20 +45,27 @@ namespace NoteAppUI
         /// </summary>
         private void AddNote()
         {
-            var noteForm = new NoteForm(new Note());
-            noteForm.ShowDialog();
-
-            // Если пользователь подтверждает добавление новой заметки нажатием на кнопку "ОК",
-            // необходимо сохранить ее в проект, в противном случае - не сохранять.
-            if (noteForm.DialogResult == DialogResult.OK)
+            try
             {
-                var addedNote = noteForm.Note;
-                Project.Notes.Add(addedNote);
-                ProjectManager.SaveToFile(Project, ProjectManager.DefaultPath);
-                RefreshDataInNotesListBox();
+                var noteForm = new NoteForm(new Note());
+                noteForm.ShowDialog();
 
-                // Текущей заметкой становится добавленная в проект заметка.
-                NotesListBox.SelectedItem = Project.Notes[Project.Notes.Count - 1];
+                // Если пользователь подтверждает добавление новой заметки нажатием на кнопку "ОК",
+                // необходимо сохранить ее в проект, в противном случае - не сохранять.
+                if (noteForm.DialogResult == DialogResult.OK)
+                {
+                    var addedNote = noteForm.Note;
+                    Project.Notes.Add(addedNote);
+                    ProjectManager.SaveToFile(Project, ProjectManager.DefaultPath);
+                    RefreshDataInNotesListBox();
+
+                    // Текущей заметкой становится добавленная в проект заметка.
+                    NotesListBox.SelectedItem = Project.Notes[Project.Notes.Count - 1];
+                }
+            }
+            catch(Exception)
+            {
+                return;
             }
         }
 
