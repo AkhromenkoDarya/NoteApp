@@ -15,28 +15,12 @@ namespace NoteAppUI
         private Project _project;
 
         /// <summary>
-        /// Возвращает и задает экземпляр проекта <see cref="Project"/>.
-        /// </summary>
-        public Project Project
-        {
-            get
-            {
-                return _project;
-            }
-
-            private set
-            {
-                _project = value;
-            }
-        }
-
-        /// <summary>
         /// Создает экземпляр <see cref="MainForm"/>.
         /// </summary>
         public MainForm()
         {
             InitializeComponent();
-            Project = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
+            _project = ProjectManager.LoadFromFile(ProjectManager.DefaultPath);
             RefreshDataInNotesListBox();
         }
 
@@ -45,27 +29,21 @@ namespace NoteAppUI
         /// </summary>
         private void AddNote()
         {
-            try
-            {
-                var noteForm = new NoteForm(new Note());
-                noteForm.ShowDialog();
+            var noteForm = new NoteForm();
+            noteForm.Note = new Note();
+            noteForm.ShowDialog();
 
-                // Если пользователь подтверждает добавление новой заметки нажатием на кнопку "ОК",
-                // необходимо сохранить ее в проект, в противном случае - не сохранять.
-                if (noteForm.DialogResult == DialogResult.OK)
-                {
-                    var addedNote = noteForm.Note;
-                    Project.Notes.Add(addedNote);
-                    ProjectManager.SaveToFile(Project, ProjectManager.DefaultPath);
-                    RefreshDataInNotesListBox();
-
-                    // Текущей заметкой становится добавленная в проект заметка.
-                    NotesListBox.SelectedItem = Project.Notes[Project.Notes.Count - 1];
-                }
-            }
-            catch(Exception)
+            // Если пользователь подтверждает добавление новой заметки нажатием на кнопку "ОК",
+            // необходимо сохранить ее в проект, в противном случае - не сохранять.
+            if (noteForm.DialogResult == DialogResult.OK)
             {
-                return;
+                var addedNote = noteForm.Note;
+                _project.Notes.Add(addedNote);
+                ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
+                RefreshDataInNotesListBox();
+
+                // Текущей заметкой становится добавленная в проект заметка.
+                NotesListBox.SelectedItem = _project.Notes[_project.Notes.Count - 1];
             }
         }
 
@@ -74,30 +52,30 @@ namespace NoteAppUI
         /// </summary>
         private void EditNote()
         {
-            try
-            {
-                var selectedIndex = NotesListBox.SelectedIndex;
-                var selectedNote = Project.Notes[selectedIndex];
+            var selectedIndex = NotesListBox.SelectedIndex;
 
-                // При редактировании заметки работаем с ее копией (клоном).
-                var noteForm = new NoteForm((Note)selectedNote.Clone());
-                noteForm.ShowDialog();
-
-                // Если пользователь подтверждает внесенные изменения нажатием на кнопку "ОК",
-                // необходимо применить эти изменения, в противном случае - оставить заметку
-                // без изменений.
-                if (noteForm.DialogResult == DialogResult.OK)
-                {
-                    var editedNote = noteForm.Note;
-                    Project.Notes.RemoveAt(selectedIndex);
-                    Project.Notes.Insert(selectedIndex, editedNote);
-                    RefreshDataInNotesListBox();
-                    NotesListBox.SelectedIndex = selectedIndex;
-                }
-            }
-            catch(Exception)
+            if (selectedIndex == -1)
             {
                 return;
+            }
+
+            var selectedNote = _project.Notes[selectedIndex];
+
+            // При редактировании заметки работаем с ее копией (клоном).
+            var noteForm = new NoteForm();
+            noteForm.Note = (Note)selectedNote.Clone();
+            noteForm.ShowDialog();
+
+            // Если пользователь подтверждает внесенные изменения нажатием на кнопку "ОК",
+            // необходимо применить эти изменения, в противном случае - оставить заметку
+            // без изменений.
+            if (noteForm.DialogResult == DialogResult.OK)
+            {
+                var editedNote = noteForm.Note;
+                _project.Notes.RemoveAt(selectedIndex);
+                _project.Notes.Insert(selectedIndex, editedNote);
+                RefreshDataInNotesListBox();
+                NotesListBox.SelectedIndex = selectedIndex;
             }
         }
 
@@ -106,26 +84,25 @@ namespace NoteAppUI
         /// </summary>
         private void RemoveNote()
         {
-            try
-            {
-                var selectedIndex = NotesListBox.SelectedIndex;
-                var selectedNote = Project.Notes[selectedIndex];
+            var selectedIndex = NotesListBox.SelectedIndex;
 
-                DialogResult result = MessageBox.Show("Do you really want to remove this note: \"" +
-                selectedNote.Title + "\" ?", "Remove The Current Note",
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-                // Заметка будет удалена из проекта, только если пользователь подтвердит удаление.
-                if (result == DialogResult.OK)
-                {
-                    Project.Notes.RemoveAt(selectedIndex);
-                    ProjectManager.SaveToFile(Project, ProjectManager.DefaultPath);
-                    RefreshDataInNotesListBox();
-                }
-            }
-            catch(Exception)
+            if (selectedIndex == -1)
             {
                 return;
+            }
+
+            var selectedNote = _project.Notes[selectedIndex];
+
+            DialogResult result = MessageBox.Show("Do you really want to remove this note: \"" +
+            selectedNote.Title + "\"?", "Remove Note", MessageBoxButtons.OKCancel,
+            MessageBoxIcon.Question);
+
+            // Заметка будет удалена из проекта, только если пользователь подтвердит удаление.
+            if (result == DialogResult.OK)
+            {
+                _project.Notes.RemoveAt(selectedIndex);
+                ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
+                RefreshDataInNotesListBox();
             }
         }
 
@@ -136,7 +113,7 @@ namespace NoteAppUI
         private void RefreshDataInNotesListBox()
         {
             NotesListBox.DataSource = null;
-            NotesListBox.DataSource = Project.Notes;
+            NotesListBox.DataSource = _project.Notes;
         }
 
         /// <summary>
@@ -165,7 +142,7 @@ namespace NoteAppUI
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProjectManager.SaveToFile(Project, ProjectManager.DefaultPath);
+            ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
             Application.Exit();
         }
 
@@ -214,9 +191,24 @@ namespace NoteAppUI
             }
         }
 
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.F1)
+            {
+                // По нажатию пользователем клавиши "F1" отображаем окно "О программе".
+                ShowAboutForm();
+            }
+            else if(e.KeyCode == Keys.Delete)
+            {
+                // Если же пользователь нажал клавишу "Delete", отображаем окно с предложением
+                // удалить текущую заметку (если она выбрана).
+                RemoveNote();
+            }
+        }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            ProjectManager.SaveToFile(Project, ProjectManager.DefaultPath);
+            ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
         }
     }
 }

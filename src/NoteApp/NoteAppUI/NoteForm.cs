@@ -16,6 +16,17 @@ namespace NoteAppUI
         private Note _note;
 
         /// <summary>
+        /// Флаг, определяющий, корректны ли введенные пользователем данные текущей заметки.
+        /// </summary>
+        private bool _hasErrors = false;
+
+        /// <summary>
+        /// Текстовое сообщение, которое описывает ошибки, допущенные пользователем при вводе
+        /// данных текущей заметки.
+        /// </summary>
+        private string _exceptionMessage;
+
+        /// <summary>
         /// Возвращает и задает текстовую заметку пользователя, подлежащую добавлению или
         /// редактированию. 
         /// </summary>
@@ -26,7 +37,7 @@ namespace NoteAppUI
                 return _note;
             }
 
-            private set
+            set
             {
                 if(value != null)
                 {
@@ -34,8 +45,17 @@ namespace NoteAppUI
                 }
                 else
                 {
-                    throw new NullReferenceException();
+                    _note = new Note();
                 }
+
+                // При загрузке окна добавления/редактирования заметки предварительно
+                // заполняем все поля данными заметки.
+                //
+                TitleTextBox.Text = _note.Title;
+                CategoryComboBox.SelectedItem = _note.Category;
+                TextBox.Text = _note.Text;
+                CreationTimeDateTimePicker.Value = _note.CreationTime;
+                ModificationTimeDateTimePicker.Value = _note.ModificationTime;
             }
         }
 
@@ -43,26 +63,13 @@ namespace NoteAppUI
         /// Создает экземпляр <see cref="NoteForm"/>.
         /// </summary>
         /// <param name="note"> Текстовая заметка пользователя.</param>
-        public NoteForm(Note note)
+        public NoteForm()
         {
             InitializeComponent();
-            Note = note;
 
             // Для возможности выбора пользователем категории заметки "привязываем" к выпадающему
             // списку перечисление с возможными категориями.
             CategoryComboBox.DataSource = Enum.GetValues(typeof(NoteCategory));
-        }
-
-        private void NoteForm_Load(object sender, EventArgs e)
-        {
-            // При загрузке окна добавления/редактирования заметки предварительно заполняем
-            // все поля данными заметки.
-            //
-            TitleTextBox.Text = Note.Title;
-            CategoryComboBox.SelectedItem = Note.Category;
-            TextBox.Text = Note.Text;
-            CreationTimeDateTimePicker.Value = Note.CreationTime;
-            ModificationTimeDateTimePicker.Value = Note.ModificationTime;
         }
 
         private void TitleTextBox_TextChanged(object sender, EventArgs e)
@@ -74,33 +81,42 @@ namespace NoteAppUI
 
                 // Восстанавливаем "нормальный" цвет фона текстового поля с названием заметки,
                 // если значение поля корректно.
-                TitleTextBox.BackColor = Color.Empty;
+                TitleTextBox.BackColor = SystemColors.Window;
+
+                // Также указываем, что никаких ошибок ввода на данный момент нет.
+                _hasErrors = false;
+                _exceptionMessage = "";
             }
-            catch (ArgumentException)
+            catch (ArgumentException exception)
             {
                 // В случае некорректной длины названия заметки подсвечиваем текстовое поле
                 // с ее названием заметки красным цветом.
                 TitleTextBox.BackColor = Color.Salmon;
+
+                // Указываем, что возникла ошибка ввода, и сохраняем сведения об этой ошибке, чтобы
+                // в дальнейшем сообщить о них пользователю (с помощью всплывающей подсказки или окна
+                // с предупреждением).
+                _hasErrors = true;
+                _exceptionMessage = exception.Message;
             }
         }
 
         private void TitleTextBox_MouseEnter(object sender, EventArgs e)
         {
-            try
+            if(!_hasErrors)
             {
                 // В случае, если в текстовое поле с названием заметки введено корректное
                 // значение, скрываем всплывающую подсказку.
-                // 
-                Note.Title = TitleTextBox.Text;
+                //
                 TitleToolTip.Active = false;
             }
-            catch (ArgumentException exception)
+            else
             {
                 // В случае, если в текстовое поле с названием заметки введено некорректное
                 // значение, отображаем пользователю всплывающую подсказку с текстом ошибки.
                 //  
                 TitleToolTip.Active = true;
-                TitleToolTip.SetToolTip(TitleTextBox, exception.Message);
+                TitleToolTip.SetToolTip(TitleTextBox, _exceptionMessage);
             }
         }
 
@@ -118,18 +134,17 @@ namespace NoteAppUI
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            try
+            if(!_hasErrors)
             {
-                Note.Title = TitleTextBox.Text;
                 DialogResult = DialogResult.OK;
                 Close();
             }
-            catch(ArgumentException exception)
+            else
             {
                 // Если какие-либо указанные пользователем данные некорректны, отображаем окно
                 // со списком ошибок, которые необходимо исправить, чтобы можно было сохранить
                 // изменения для текущей заметки.
-                MessageBox.Show("You need to correct the following data:\n\n" + exception.Message,
+                MessageBox.Show("You need to correct the following data:\n\n" + _exceptionMessage,
                     "Error List", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }

@@ -143,10 +143,10 @@ namespace NoteAppUI
             // OKButton
             // 
             this.OKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OKButton.Location = new System.Drawing.Point(577, 562);
+            this.OKButton.Location = new System.Drawing.Point(555, 562);
             this.OKButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.OKButton.Name = "OKButton";
-            this.OKButton.Size = new System.Drawing.Size(100, 30);
+            this.OKButton.Size = new System.Drawing.Size(112, 30);
             this.OKButton.TabIndex = 4;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
@@ -155,10 +155,10 @@ namespace NoteAppUI
             // CancelChangesButton
             // 
             this.CancelChangesButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CancelChangesButton.Location = new System.Drawing.Point(683, 562);
+            this.CancelChangesButton.Location = new System.Drawing.Point(673, 562);
             this.CancelChangesButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.CancelChangesButton.Name = "CancelChangesButton";
-            this.CancelChangesButton.Size = new System.Drawing.Size(100, 30);
+            this.CancelChangesButton.Size = new System.Drawing.Size(112, 30);
             this.CancelChangesButton.TabIndex = 5;
             this.CancelChangesButton.Text = "Cancel";
             this.CancelChangesButton.UseVisualStyleBackColor = true;
@@ -186,7 +186,6 @@ namespace NoteAppUI
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add/Edit Note";
-            this.Load += new System.EventHandler(this.NoteForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
