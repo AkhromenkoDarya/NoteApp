@@ -84,7 +84,7 @@ namespace NoteAppUI
             }
         }
 
-        private void TitleTextBox_MouseEnter(object sender, MouseEventArgs e)
+        private void TitleTextBox_MouseEnter(object sender, EventArgs e)
         {
             try
             {
