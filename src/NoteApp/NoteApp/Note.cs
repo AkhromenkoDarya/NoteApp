@@ -101,6 +101,12 @@ namespace NoteApp
         /// </summary>
         public DateTime ModificationTime { get; private set; }
 
+
+        public Note(NoteCategory category) :this("Без названия", category, "")
+        {
+
+        }
+
         /// <summary>
         /// Создает экземпляр <see cref="Note"/>.
         /// </summary>

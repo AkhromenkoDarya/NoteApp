@@ -109,6 +109,7 @@ namespace NoteAppUI
             this.TitleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.TitleTextBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.TitleTextBox.Location = new System.Drawing.Point(90, 15);
             this.TitleTextBox.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this.TitleTextBox.Name = "TitleTextBox";

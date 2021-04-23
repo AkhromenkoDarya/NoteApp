@@ -80,6 +80,7 @@ namespace NoteAppUI
             this.EmailLinkLabel.TabStop = true;
             this.EmailLinkLabel.Text = "e-mail for feedback: otulissa2012@yandex.ru";
             this.EmailLinkLabel.UseCompatibleTextRendering = true;
+            this.EmailLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.EmailLinkLabel_LinkClicked);
             // 
             // GitHubLinkLabel
             // 
@@ -93,6 +94,7 @@ namespace NoteAppUI
             this.GitHubLinkLabel.TabStop = true;
             this.GitHubLinkLabel.Text = "GitHub: AkhromenkoDarya/NoteApp";
             this.GitHubLinkLabel.UseCompatibleTextRendering = true;
+            this.GitHubLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.GitHubLinkLabel_LinkClicked);
             // 
             // CopyrightsLabel
             // 

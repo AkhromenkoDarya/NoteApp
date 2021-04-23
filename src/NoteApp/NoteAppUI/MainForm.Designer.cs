@@ -80,7 +80,7 @@ namespace NoteAppUI
             this.TwoColumnLayoutSplitContainer.Panel1.Controls.Add(this.EditButton);
             this.TwoColumnLayoutSplitContainer.Panel1.Controls.Add(this.ShowCategoryLabel);
             this.TwoColumnLayoutSplitContainer.Panel1.Controls.Add(this.ShowCategoryComboBox);
-            this.TwoColumnLayoutSplitContainer.Panel1MinSize = 177;
+            this.TwoColumnLayoutSplitContainer.Panel1MinSize = 196;
             // 
             // TwoColumnLayoutSplitContainer.Panel2
             // 
@@ -92,8 +92,9 @@ namespace NoteAppUI
             this.TwoColumnLayoutSplitContainer.Panel2.Controls.Add(this.CreationTimeLabel);
             this.TwoColumnLayoutSplitContainer.Panel2.Controls.Add(this.CategoryLabel);
             this.TwoColumnLayoutSplitContainer.Panel2.Controls.Add(this.TextBox);
-            this.TwoColumnLayoutSplitContainer.Size = new System.Drawing.Size(1047, 565);
-            this.TwoColumnLayoutSplitContainer.SplitterDistance = 362;
+            this.TwoColumnLayoutSplitContainer.Panel2MinSize = 408;
+            this.TwoColumnLayoutSplitContainer.Size = new System.Drawing.Size(1062, 565);
+            this.TwoColumnLayoutSplitContainer.SplitterDistance = 367;
             this.TwoColumnLayoutSplitContainer.TabIndex = 2;
             // 
             // NotesListBox
@@ -106,7 +107,7 @@ namespace NoteAppUI
             this.NotesListBox.Location = new System.Drawing.Point(15, 33);
             this.NotesListBox.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.NotesListBox.Name = "NotesListBox";
-            this.NotesListBox.Size = new System.Drawing.Size(343, 468);
+            this.NotesListBox.Size = new System.Drawing.Size(348, 468);
             this.NotesListBox.TabIndex = 2;
             this.NotesListBox.SelectedIndexChanged += new System.EventHandler(this.NotesListBox_SelectedIndexChanged);
             // 
@@ -174,8 +175,9 @@ namespace NoteAppUI
             this.ShowCategoryComboBox.FormattingEnabled = true;
             this.ShowCategoryComboBox.Location = new System.Drawing.Point(131, 3);
             this.ShowCategoryComboBox.Name = "ShowCategoryComboBox";
-            this.ShowCategoryComboBox.Size = new System.Drawing.Size(227, 24);
+            this.ShowCategoryComboBox.Size = new System.Drawing.Size(232, 24);
             this.ShowCategoryComboBox.TabIndex = 1;
+            this.ShowCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.ShowCategoryComboBox_SelectedIndexChanged);
             // 
             // TitleLabel
             // 
@@ -201,15 +203,15 @@ namespace NoteAppUI
             this.ModificationTimeDateTimePicker.CustomFormat = "dd.MM.yyyy    HH:mm";
             this.ModificationTimeDateTimePicker.Enabled = false;
             this.ModificationTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.ModificationTimeDateTimePicker.Location = new System.Drawing.Point(351, 59);
+            this.ModificationTimeDateTimePicker.Location = new System.Drawing.Point(353, 60);
             this.ModificationTimeDateTimePicker.Name = "ModificationTimeDateTimePicker";
-            this.ModificationTimeDateTimePicker.Size = new System.Drawing.Size(172, 22);
+            this.ModificationTimeDateTimePicker.Size = new System.Drawing.Size(176, 22);
             this.ModificationTimeDateTimePicker.TabIndex = 5;
             // 
             // ModificationTimeLabel
             // 
             this.ModificationTimeLabel.AutoSize = true;
-            this.ModificationTimeLabel.Location = new System.Drawing.Point(280, 64);
+            this.ModificationTimeLabel.Location = new System.Drawing.Point(272, 64);
             this.ModificationTimeLabel.Margin = new System.Windows.Forms.Padding(3);
             this.ModificationTimeLabel.Name = "ModificationTimeLabel";
             this.ModificationTimeLabel.Size = new System.Drawing.Size(65, 17);
@@ -224,7 +226,7 @@ namespace NoteAppUI
             this.CreationTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.CreationTimeDateTimePicker.Location = new System.Drawing.Point(80, 59);
             this.CreationTimeDateTimePicker.Name = "CreationTimeDateTimePicker";
-            this.CreationTimeDateTimePicker.Size = new System.Drawing.Size(172, 22);
+            this.CreationTimeDateTimePicker.Size = new System.Drawing.Size(176, 22);
             this.CreationTimeDateTimePicker.TabIndex = 3;
             // 
             // CreationTimeLabel
@@ -254,12 +256,12 @@ namespace NoteAppUI
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox.Location = new System.Drawing.Point(8, 88);
-            this.TextBox.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.TextBox.Margin = new System.Windows.Forms.Padding(3, 3, 15, 0);
             this.TextBox.Multiline = true;
             this.TextBox.Name = "TextBox";
             this.TextBox.ReadOnly = true;
             this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TextBox.Size = new System.Drawing.Size(673, 477);
+            this.TextBox.Size = new System.Drawing.Size(668, 477);
             this.TextBox.TabIndex = 7;
             // 
             // MenuStrip
@@ -270,8 +272,9 @@ namespace NoteAppUI
             this.EditToolStripMenuItem,
             this.HelpToolStripMenuItem});
             this.MenuStrip.Location = new System.Drawing.Point(15, 0);
+            this.MenuStrip.MinimumSize = new System.Drawing.Size(0, 0);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(1032, 28);
+            this.MenuStrip.Size = new System.Drawing.Size(1047, 30);
             this.MenuStrip.TabIndex = 0;
             this.MenuStrip.Text = "menuStrip1";
             // 
@@ -346,9 +349,9 @@ namespace NoteAppUI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.MenuStrip;
-            this.MinimumSize = new System.Drawing.Size(840, 418);
+            this.MinimumSize = new System.Drawing.Size(852, 430);
             this.Name = "MainForm";
-            this.Padding = new System.Windows.Forms.Padding(15, 0, 15, 15);
+            this.Padding = new System.Windows.Forms.Padding(15, 0, 0, 15);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NoteApp";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
