@@ -272,9 +272,8 @@ namespace NoteAppUI
             this.EditToolStripMenuItem,
             this.HelpToolStripMenuItem});
             this.MenuStrip.Location = new System.Drawing.Point(15, 0);
-            this.MenuStrip.MinimumSize = new System.Drawing.Size(0, 0);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(1047, 30);
+            this.MenuStrip.Size = new System.Drawing.Size(1047, 28);
             this.MenuStrip.TabIndex = 0;
             this.MenuStrip.Text = "menuStrip1";
             // 

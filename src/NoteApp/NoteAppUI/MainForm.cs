@@ -190,6 +190,24 @@ namespace NoteAppUI
                 _filteredNotes.Remove(selectedNote);
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
                 RefreshDataInNotesListBox();
+
+                // Если после удаления заметки отображаемый список не пуст, определяем, какую заметку
+                // отобразить следующей.
+                //
+                if(NotesListBox.Items.Count != 0)
+                {
+                    // Если удалили первую или последнюю заметку в списке, переключаемся на первую заметку
+                    // в обновленном списке. Иначе отображаем заметку, следующую после удаленной
+                    // 
+                    if(selectedIndex == 0 || selectedIndex == NotesListBox.Items.Count)
+                    {
+                        NotesListBox.SelectedItem = NotesListBox.Items[0];
+                    }
+                    else
+                    {
+                        NotesListBox.SelectedItem = NotesListBox.Items[selectedIndex];
+                    }
+                }
             }
         }
 

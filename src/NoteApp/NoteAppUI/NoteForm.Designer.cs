@@ -67,7 +67,7 @@ namespace NoteAppUI
             // ModificationTimeLabel
             // 
             this.ModificationTimeLabel.AutoSize = true;
-            this.ModificationTimeLabel.Location = new System.Drawing.Point(286, 78);
+            this.ModificationTimeLabel.Location = new System.Drawing.Point(285, 78);
             this.ModificationTimeLabel.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.ModificationTimeLabel.Name = "ModificationTimeLabel";
             this.ModificationTimeLabel.Size = new System.Drawing.Size(65, 17);
@@ -79,7 +79,7 @@ namespace NoteAppUI
             this.ModificationTimeDateTimePicker.CustomFormat = "dd.MM.yyyy    HH:mm";
             this.ModificationTimeDateTimePicker.Enabled = false;
             this.ModificationTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.ModificationTimeDateTimePicker.Location = new System.Drawing.Point(357, 73);
+            this.ModificationTimeDateTimePicker.Location = new System.Drawing.Point(365, 73);
             this.ModificationTimeDateTimePicker.Name = "ModificationTimeDateTimePicker";
             this.ModificationTimeDateTimePicker.Size = new System.Drawing.Size(172, 22);
             this.ModificationTimeDateTimePicker.TabIndex = 1;
@@ -181,7 +181,7 @@ namespace NoteAppUI
             this.Controls.Add(this.TitleTextBox);
             this.Controls.Add(this.CategoryLabel);
             this.Controls.Add(this.TitleLabel);
-            this.MinimumSize = new System.Drawing.Size(560, 398);
+            this.MinimumSize = new System.Drawing.Size(568, 406);
             this.Name = "NoteForm";
             this.Padding = new System.Windows.Forms.Padding(15);
             this.ShowIcon = false;
