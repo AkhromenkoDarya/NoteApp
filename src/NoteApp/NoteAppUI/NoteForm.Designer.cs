@@ -52,7 +52,7 @@ namespace NoteAppUI
             this.CreationTimeDateTimePicker.Location = new System.Drawing.Point(90, 73);
             this.CreationTimeDateTimePicker.Name = "CreationTimeDateTimePicker";
             this.CreationTimeDateTimePicker.Size = new System.Drawing.Size(172, 22);
-            this.CreationTimeDateTimePicker.TabIndex = 1;
+            this.CreationTimeDateTimePicker.TabIndex = 5;
             // 
             // CreationTimeLabel
             // 
@@ -61,7 +61,7 @@ namespace NoteAppUI
             this.CreationTimeLabel.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.CreationTimeLabel.Name = "CreationTimeLabel";
             this.CreationTimeLabel.Size = new System.Drawing.Size(62, 17);
-            this.CreationTimeLabel.TabIndex = 0;
+            this.CreationTimeLabel.TabIndex = 4;
             this.CreationTimeLabel.Text = "Created:";
             // 
             // ModificationTimeLabel
@@ -71,7 +71,7 @@ namespace NoteAppUI
             this.ModificationTimeLabel.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.ModificationTimeLabel.Name = "ModificationTimeLabel";
             this.ModificationTimeLabel.Size = new System.Drawing.Size(65, 17);
-            this.ModificationTimeLabel.TabIndex = 0;
+            this.ModificationTimeLabel.TabIndex = 6;
             this.ModificationTimeLabel.Text = "Modified:";
             // 
             // ModificationTimeDateTimePicker
@@ -82,7 +82,7 @@ namespace NoteAppUI
             this.ModificationTimeDateTimePicker.Location = new System.Drawing.Point(365, 73);
             this.ModificationTimeDateTimePicker.Name = "ModificationTimeDateTimePicker";
             this.ModificationTimeDateTimePicker.Size = new System.Drawing.Size(172, 22);
-            this.ModificationTimeDateTimePicker.TabIndex = 1;
+            this.ModificationTimeDateTimePicker.TabIndex = 7;
             // 
             // TitleLabel
             // 
@@ -91,7 +91,7 @@ namespace NoteAppUI
             this.TitleLabel.Margin = new System.Windows.Forms.Padding(0, 0, 3, 3);
             this.TitleLabel.Name = "TitleLabel";
             this.TitleLabel.Size = new System.Drawing.Size(39, 17);
-            this.TitleLabel.TabIndex = 2;
+            this.TitleLabel.TabIndex = 0;
             this.TitleLabel.Text = "Title:";
             // 
             // CategoryLabel
@@ -101,7 +101,7 @@ namespace NoteAppUI
             this.CategoryLabel.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
             this.CategoryLabel.Name = "CategoryLabel";
             this.CategoryLabel.Size = new System.Drawing.Size(69, 17);
-            this.CategoryLabel.TabIndex = 3;
+            this.CategoryLabel.TabIndex = 2;
             this.CategoryLabel.Text = "Category:";
             // 
             // TitleTextBox
@@ -114,7 +114,7 @@ namespace NoteAppUI
             this.TitleTextBox.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this.TitleTextBox.Name = "TitleTextBox";
             this.TitleTextBox.Size = new System.Drawing.Size(693, 22);
-            this.TitleTextBox.TabIndex = 0;
+            this.TitleTextBox.TabIndex = 1;
             this.TitleTextBox.TextChanged += new System.EventHandler(this.TitleTextBox_TextChanged);
             this.TitleTextBox.MouseEnter += new System.EventHandler(this.TitleTextBox_MouseEnter);
             // 
@@ -124,7 +124,7 @@ namespace NoteAppUI
             this.CategoryComboBox.Location = new System.Drawing.Point(90, 43);
             this.CategoryComboBox.Name = "CategoryComboBox";
             this.CategoryComboBox.Size = new System.Drawing.Size(234, 24);
-            this.CategoryComboBox.TabIndex = 1;
+            this.CategoryComboBox.TabIndex = 3;
             this.CategoryComboBox.SelectionChangeCommitted += new System.EventHandler(this.CategoryComboBox_SelectionChangeCommitted);
             // 
             // TextBox
@@ -138,7 +138,7 @@ namespace NoteAppUI
             this.TextBox.Name = "TextBox";
             this.TextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextBox.Size = new System.Drawing.Size(768, 455);
-            this.TextBox.TabIndex = 3;
+            this.TextBox.TabIndex = 8;
             this.TextBox.TextChanged += new System.EventHandler(this.TextBox_TextChanged);
             // 
             // OKButton
@@ -148,7 +148,7 @@ namespace NoteAppUI
             this.OKButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.OKButton.Name = "OKButton";
             this.OKButton.Size = new System.Drawing.Size(112, 30);
-            this.OKButton.TabIndex = 4;
+            this.OKButton.TabIndex = 9;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
             this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
@@ -160,7 +160,7 @@ namespace NoteAppUI
             this.CancelChangesButton.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.CancelChangesButton.Name = "CancelChangesButton";
             this.CancelChangesButton.Size = new System.Drawing.Size(112, 30);
-            this.CancelChangesButton.TabIndex = 5;
+            this.CancelChangesButton.TabIndex = 10;
             this.CancelChangesButton.Text = "Cancel";
             this.CancelChangesButton.UseVisualStyleBackColor = true;
             this.CancelChangesButton.Click += new System.EventHandler(this.CancelChangesButton_Click);

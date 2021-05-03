@@ -95,7 +95,7 @@ namespace NoteAppUI
             this.TwoColumnLayoutSplitContainer.Panel2MinSize = 408;
             this.TwoColumnLayoutSplitContainer.Size = new System.Drawing.Size(1062, 565);
             this.TwoColumnLayoutSplitContainer.SplitterDistance = 367;
-            this.TwoColumnLayoutSplitContainer.TabIndex = 2;
+            this.TwoColumnLayoutSplitContainer.TabIndex = 1;
             // 
             // NotesListBox
             // 
@@ -164,7 +164,7 @@ namespace NoteAppUI
             this.ShowCategoryLabel.Name = "ShowCategoryLabel";
             this.ShowCategoryLabel.Padding = new System.Windows.Forms.Padding(0, 3, 3, 0);
             this.ShowCategoryLabel.Size = new System.Drawing.Size(110, 20);
-            this.ShowCategoryLabel.TabIndex = 1;
+            this.ShowCategoryLabel.TabIndex = 0;
             this.ShowCategoryLabel.Text = "Show Category:";
             // 
             // ShowCategoryComboBox
@@ -196,7 +196,7 @@ namespace NoteAppUI
             this.CategoryTextBox.Location = new System.Drawing.Point(80, 38);
             this.CategoryTextBox.Name = "CategoryTextBox";
             this.CategoryTextBox.Size = new System.Drawing.Size(100, 15);
-            this.CategoryTextBox.TabIndex = 6;
+            this.CategoryTextBox.TabIndex = 2;
             // 
             // ModificationTimeDateTimePicker
             // 
@@ -206,7 +206,7 @@ namespace NoteAppUI
             this.ModificationTimeDateTimePicker.Location = new System.Drawing.Point(353, 60);
             this.ModificationTimeDateTimePicker.Name = "ModificationTimeDateTimePicker";
             this.ModificationTimeDateTimePicker.Size = new System.Drawing.Size(176, 22);
-            this.ModificationTimeDateTimePicker.TabIndex = 5;
+            this.ModificationTimeDateTimePicker.TabIndex = 6;
             // 
             // ModificationTimeLabel
             // 
@@ -215,7 +215,7 @@ namespace NoteAppUI
             this.ModificationTimeLabel.Margin = new System.Windows.Forms.Padding(3);
             this.ModificationTimeLabel.Name = "ModificationTimeLabel";
             this.ModificationTimeLabel.Size = new System.Drawing.Size(65, 17);
-            this.ModificationTimeLabel.TabIndex = 4;
+            this.ModificationTimeLabel.TabIndex = 5;
             this.ModificationTimeLabel.Text = "Modified:";
             this.ModificationTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -227,7 +227,7 @@ namespace NoteAppUI
             this.CreationTimeDateTimePicker.Location = new System.Drawing.Point(80, 59);
             this.CreationTimeDateTimePicker.Name = "CreationTimeDateTimePicker";
             this.CreationTimeDateTimePicker.Size = new System.Drawing.Size(176, 22);
-            this.CreationTimeDateTimePicker.TabIndex = 3;
+            this.CreationTimeDateTimePicker.TabIndex = 4;
             // 
             // CreationTimeLabel
             // 
