@@ -21,15 +21,9 @@ namespace NoteAppUI
         private bool _hasErrors = false;
 
         /// <summary>
-        /// Текстовое сообщение, которое описывает ошибки, допущенные пользователем при вводе данных 
-        /// текущей заметки.
-        /// </summary>
-        private string _exceptionMessage;
-
-        /// <summary>
         /// Цвет, который принимает поле окна <see cref="NoteForm"/> содержащее некорректные данные. 
         /// </summary>
-        Color _errorColor = Color.FromArgb(252, 58, 90);
+        private Color _errorColor = Color.FromArgb(252, 58, 90);
 
         /// <summary>
         /// Возвращает и задает текстовую заметку пользователя, подлежащую добавлению или редактированию. 
@@ -43,18 +37,7 @@ namespace NoteAppUI
 
             set
             {
-                if(value != null)
-                {
-                    _note = value;
-                }
-                else
-                {
-                    _note = new Note();
-                }
-
-                // При загрузке окна добавления/редактирования заметки предварительно заполняем все поля
-                // данными заметки.
-                //
+                _note = value ?? new Note();
                 TitleTextBox.Text = _note.Title;
                 CategoryComboBox.SelectedItem = _note.Category;
                 TextBox.Text = _note.Text;
@@ -70,9 +53,6 @@ namespace NoteAppUI
         public NoteForm()
         {
             InitializeComponent();
-
-            // Для возможности выбора пользователем категории заметки "привязываем" к выпадающему списку
-            // перечисление с возможными категориями.
             CategoryComboBox.DataSource = Enum.GetValues(typeof(NoteCategory));
         }
 
@@ -82,45 +62,16 @@ namespace NoteAppUI
             {
                 Note.Title = TitleTextBox.Text;
                 ModificationTimeDateTimePicker.Value = Note.ModificationTime;
-
-                // Восстанавливаем "нормальный" цвет фона текстового поля с названием заметки, если значение
-                // поля корректно.
                 TitleTextBox.BackColor = SystemColors.Window;
-
-                // Также указываем, что никаких ошибок ввода на данный момент нет.
-                //
                 _hasErrors = false;
-                _exceptionMessage = "";
+                TitleToolTip.Active = false;
             }
             catch (ArgumentException exception)
             {
-                // В случае некорректной длины названия заметки подсвечиваем текстовое поле с ее названием
-                // заметки особым цветом.
                 TitleTextBox.BackColor = _errorColor;
-
-                // Указываем, что возникла ошибка ввода, и сохраняем сведения об этой ошибке, чтобы
-                // в дальнейшем сообщить о них пользователю (с помощью всплывающей подсказки или окна
-                // с предупреждением).
-                //
                 _hasErrors = true;
-                _exceptionMessage = exception.Message;
-            }
-        }
-
-        private void TitleTextBox_MouseEnter(object sender, EventArgs e)
-        {
-            if(!_hasErrors)
-            {
-                // В случае, если в текстовое поле с названием заметки введено корректное значение,
-                // скрываем всплывающую подсказку.
-                TitleToolTip.Active = false;
-            }
-            else
-            {
-                // Иначе отображаем пользователю всплывающую подсказку с текстом ошибки.
-                //  
                 TitleToolTip.Active = true;
-                TitleToolTip.SetToolTip(TitleTextBox, _exceptionMessage);
+                TitleToolTip.SetToolTip(TitleTextBox, exception.Message);
             }
         }
 
@@ -145,11 +96,9 @@ namespace NoteAppUI
             }
             else
             {
-                // Если какие-либо указанные пользователем данные некорректны, отображаем окно
-                // со списком ошибок, которые необходимо исправить, чтобы можно было сохранить
-                // изменения для текущей заметки.
-                MessageBox.Show("You need to correct the following data:\n\n" + _exceptionMessage,
-                    "Error List", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("You need to correct the following data:\n\n" + 
+                    TitleToolTip.GetToolTip(TitleTextBox), "Error List", MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
             }
         }
 

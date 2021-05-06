@@ -203,15 +203,15 @@ namespace NoteAppUI
             this.ModificationTimeDateTimePicker.CustomFormat = "dd.MM.yyyy    HH:mm";
             this.ModificationTimeDateTimePicker.Enabled = false;
             this.ModificationTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.ModificationTimeDateTimePicker.Location = new System.Drawing.Point(353, 60);
+            this.ModificationTimeDateTimePicker.Location = new System.Drawing.Point(357, 59);
             this.ModificationTimeDateTimePicker.Name = "ModificationTimeDateTimePicker";
-            this.ModificationTimeDateTimePicker.Size = new System.Drawing.Size(176, 22);
+            this.ModificationTimeDateTimePicker.Size = new System.Drawing.Size(172, 22);
             this.ModificationTimeDateTimePicker.TabIndex = 6;
             // 
             // ModificationTimeLabel
             // 
             this.ModificationTimeLabel.AutoSize = true;
-            this.ModificationTimeLabel.Location = new System.Drawing.Point(272, 64);
+            this.ModificationTimeLabel.Location = new System.Drawing.Point(276, 64);
             this.ModificationTimeLabel.Margin = new System.Windows.Forms.Padding(3);
             this.ModificationTimeLabel.Name = "ModificationTimeLabel";
             this.ModificationTimeLabel.Size = new System.Drawing.Size(65, 17);
@@ -226,7 +226,7 @@ namespace NoteAppUI
             this.CreationTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.CreationTimeDateTimePicker.Location = new System.Drawing.Point(80, 59);
             this.CreationTimeDateTimePicker.Name = "CreationTimeDateTimePicker";
-            this.CreationTimeDateTimePicker.Size = new System.Drawing.Size(176, 22);
+            this.CreationTimeDateTimePicker.Size = new System.Drawing.Size(172, 22);
             this.CreationTimeDateTimePicker.TabIndex = 4;
             // 
             // CreationTimeLabel

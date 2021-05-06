@@ -14,13 +14,13 @@ namespace NoteAppUI
         /// Константа, которая хранит индекс категории заметки "Все заметки", содержащейся в выпадающем 
         /// списке <see cref="ShowCategoryComboBox"/>.
         /// </summary>
-        const int _allCategoryIndex = 0;
+        private const int _allCategoryIndex = 0;
 
         /// <summary>
         /// Константа, которая хранит название категории заметки "Все заметки", содержащейся в выпадающем 
         /// списке <see cref="ShowCategoryComboBox"/>.
         /// </summary>
-        const string _allCategory = "All";
+        private const string _allCategory = "All";
 
         /// <summary>
         /// Поле для хранения экземпляра проекта <see cref="Project"/>.
@@ -31,7 +31,7 @@ namespace NoteAppUI
         /// Дополнительный список заметок, который содержит заметки определенной категории, выбранной 
         /// пользователем из выпадающего списка <see cref="ShowCategoryComboBox"/>.
         /// </summary>
-        List<Note> _filteredNotes = new List<Note>();
+        private List<Note> _filteredNotes = new List<Note>();
 
         /// <summary>
         /// Создает экземпляр <see cref="MainForm"/>.
@@ -59,11 +59,6 @@ namespace NoteAppUI
             var selectedCategory = (string)ShowCategoryComboBox.SelectedItem;
             var noteForm = new NoteForm();
 
-            // Определяем, какую категорию отобразить в окне добавления заметки: если пользователь добавляет
-            // заметку, когда из выпадающего списка в главном окне выбрана категория "Все заметки", то
-            // оставляем значение категории по умолчанию; иначе отображаем в окне добавления заметки ту
-            // категорию, которая в данный момент выбрана из выпадающего списка в главном окне.
-            //
             if (selectedCategory != _allCategory)
             {
                 var category = (NoteCategory)Enum.Parse(typeof(NoteCategory), selectedCategory);
@@ -76,30 +71,12 @@ namespace NoteAppUI
 
             noteForm.ShowDialog();
 
-            // Если пользователь подтверждает добавление новой заметки нажатием на кнопку "ОК", необходимо
-            // сохранить ее в проект, в противном случае - не сохранять.
-            // 
             if (noteForm.DialogResult == DialogResult.OK)
             {
                 var addedNote = noteForm.Note;
                 _project.Notes.Add(addedNote);
-
-                // Если категория добавляемой заметки не совпадает с категорией, выбранной пользователем из
-                // выпадающего списка в главном окне, и при этом в данный момент выбрана любая категория,
-                // кроме "Все заметки", то полностью обновляем список заметок; в противном случае просто
-                // добавляем заметку к текущему списку отсортированным по категории заметок и обновляем
-                // только отображение заметок пользователю.
-                // 
-                if (selectedCategory != addedNote.Category.ToString() && selectedCategory != _allCategory)
-                {
-                    ShowCategoryComboBox.SelectedItem = addedNote.Category.ToString();
-                }
-                else
-                {
-                    _filteredNotes.Add(addedNote);
-                    RefreshDataInNotesListBox();
-                }
-
+                var filteredNotesIndex = _filteredNotes.IndexOf(addedNote);
+                AddNoteToFilteredNotes(addedNote, selectedCategory, filteredNotesIndex);
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
 
                 // Текущей заметкой становится добавленная в проект заметка.
@@ -114,7 +91,7 @@ namespace NoteAppUI
         {
             var selectedIndex = NotesListBox.SelectedIndex;
 
-            if(selectedIndex == -1)
+            if (selectedIndex == -1)
             {
                 return;
             }
@@ -130,34 +107,15 @@ namespace NoteAppUI
             noteForm.Note = (Note)selectedNote.Clone();
             noteForm.ShowDialog();
 
-            // Если пользователь подтверждает внесенные изменения нажатием на кнопку "ОК", необходимо
-            // применить эти изменения, в противном случае - оставить заметку без изменений.
             if (noteForm.DialogResult == DialogResult.OK)
             {
                 var editedNote = noteForm.Note;
-
-                // Сначала заменяем предыдущую версию заметки обновленной в проекте.
                 _project.Notes.RemoveAt(projectIndex);
                 _project.Notes.Insert(projectIndex, editedNote);
 
                 var selectedCategory = (string)ShowCategoryComboBox.SelectedItem;
-
-                // Если пользователь изменил категорию отредактированной заметки и при этом в главном окне
-                // выбрана любая категория заметок, кроме "Все заметки", то полностью обновляем список 
-                // отображаемых заметок; иначе просто заменяем предыдущую версию заметки ее измененной 
-                // версией в списке отсортированных по категории заметок и обновляем только отображение 
-                // заметок пользователю. 
-                //
-                if (selectedCategory != editedNote.Category.ToString() && selectedCategory != _allCategory)
-                {
-                    ShowCategoryComboBox.SelectedItem = editedNote.Category.ToString();
-                }
-                else
-                {
-                    _filteredNotes.RemoveAt(selectedIndex);
-                    _filteredNotes.Insert(selectedIndex, editedNote);
-                    RefreshDataInNotesListBox();
-                }
+                var filteredNotesIndex = _filteredNotes.IndexOf(selectedNote);
+                AddNoteToFilteredNotes(editedNote, selectedCategory, filteredNotesIndex);
 
                 // Текущей заметкой становится отредактированная заметка. 
                 NotesListBox.SelectedIndex = _filteredNotes.IndexOf(editedNote);
@@ -191,23 +149,44 @@ namespace NoteAppUI
                 ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
                 RefreshDataInNotesListBox();
 
-                // Если после удаления заметки отображаемый список не пуст, определяем, какую заметку
-                // отобразить следующей.
-                //
                 if(NotesListBox.Items.Count != 0)
                 {
-                    // Если удалили первую или последнюю заметку в списке, переключаемся на первую заметку
-                    // в обновленном списке. Иначе отображаем заметку, следующую после удаленной
-                    // 
-                    if(selectedIndex == 0 || selectedIndex == NotesListBox.Items.Count)
+                    if(selectedIndex == NotesListBox.Items.Count)
                     {
                         NotesListBox.SelectedItem = NotesListBox.Items[0];
                     }
-                    else
-                    {
-                        NotesListBox.SelectedItem = NotesListBox.Items[selectedIndex];
-                    }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Метод для добавления новой (или отредактированной) заметки в список заметок, отфильтрованный
+        /// по категориям.
+        /// </summary>
+        /// <param name="addedNote"> Новая (или отредактированная) заметка, которую нужно добавить
+        /// в отфильтрованный список.</param>
+        /// <param name="selectedCategory"> Текущая категория заметок, согласно которой заметки на 
+        /// данный момент отображены в левой части главного окна приложения.</param>
+        /// <param name="addedNoteIndex"> Индекс добавляемой заметки в отфильтрованном списке.</param>
+        private void AddNoteToFilteredNotes(Note addedNote, string selectedCategory, int addedNoteIndex)
+        {
+            if (selectedCategory != addedNote.Category.ToString() && selectedCategory != _allCategory)
+            {
+                ShowCategoryComboBox.SelectedItem = addedNote.Category.ToString();
+            }
+            else
+            {
+                if (addedNoteIndex == -1)
+                {
+                    _filteredNotes.Add(addedNote);
+                }
+                else
+                {
+                    _filteredNotes.RemoveAt(addedNoteIndex);
+                    _filteredNotes.Insert(addedNoteIndex, addedNote);
+                }
+
+                RefreshDataInNotesListBox();
             }
         }
 
@@ -227,6 +206,59 @@ namespace NoteAppUI
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.ShowDialog();
+        }
+
+        private void NotesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedNote = (Note)NotesListBox.SelectedItem;
+
+            if (selectedNote != null)
+            {
+                TitleLabel.Text = selectedNote.Title;
+                CategoryTextBox.Text = selectedNote.Category.ToString();
+                TextBox.Text = selectedNote.Text;
+                CreationTimeDateTimePicker.Value = selectedNote.CreationTime;
+                ModificationTimeDateTimePicker.Value = selectedNote.ModificationTime;
+            }
+            else
+            {
+                TitleLabel.Text = "";
+                CategoryTextBox.Text = "";
+                TextBox.Text = "";
+            }
+        }
+
+        private void ShowCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedCategory = (string)ShowCategoryComboBox.SelectedItem;
+            _filteredNotes.Clear();
+
+            foreach (Note note in _project.Notes)
+            {
+                if (note.Category.ToString() == selectedCategory || selectedCategory == _allCategory)
+                {
+                    _filteredNotes.Add(note);
+                }
+            }
+
+            RefreshDataInNotesListBox();
+
+            if (NotesListBox.Items.Count != 0)
+            {
+                NotesListBox.SelectedItem = NotesListBox.Items[0];
+            }
+        }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F1)
+            {
+                ShowAboutForm();
+            }
+            else if (e.KeyCode == Keys.Delete)
+            {
+                RemoveNote();
+            }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -270,73 +302,9 @@ namespace NoteAppUI
             ShowAboutForm();
         }
 
-        private void NotesListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Получаем выбранную пользователем заметку.
-            var selectedNote = (Note)NotesListBox.SelectedItem;
-
-            // Если выбранная заметка не пустая, отображаем все данные этой заметки в правой панели
-            // главного окна; иначе оставляем незаполненными название, категорию и текст текущей заметки.
-            //
-            if (selectedNote != null)
-            {
-                TitleLabel.Text = selectedNote.Title;
-                CategoryTextBox.Text = selectedNote.Category.ToString();
-                TextBox.Text = selectedNote.Text;
-                CreationTimeDateTimePicker.Value = selectedNote.CreationTime;
-                ModificationTimeDateTimePicker.Value = selectedNote.ModificationTime;
-            }
-            else
-            {
-                TitleLabel.Text = "";
-                CategoryTextBox.Text = "";
-                TextBox.Text = "";
-            }
-        }
-
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
-        }
-
-        private void ShowCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var selectedCategory = (string)ShowCategoryComboBox.SelectedItem;
-            _filteredNotes.Clear();
-
-            // Добавляем заметку в отсортированный список только в том случае, если ее категория совпадает
-            // с категорией, выбранной пользователем из выпадающего списка в главном окне приложения, или
-            // если выбранной категорией является "Все заметки". 
-            //
-            foreach (Note note in _project.Notes)
-            {
-                if (note.Category.ToString() == selectedCategory || selectedCategory == _allCategory)
-                {
-                    _filteredNotes.Add(note);
-                }
-            }
-
-            RefreshDataInNotesListBox();
-
-            // После обновления данных текущей становится первая (верхняя) заметка отсортированного списка
-            // (в случае, если этот список не пустой). 
-            // 
-            if (NotesListBox.Items.Count != 0)
-            {
-                NotesListBox.SelectedItem = NotesListBox.Items[0];
-            }
-        }
-
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.F1)
-            {
-                ShowAboutForm();
-            }
-            else if (e.KeyCode == Keys.Delete)
-            {
-                RemoveNote();
-            }
         }
     }
 }
