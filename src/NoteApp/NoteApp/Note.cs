@@ -52,7 +52,7 @@ namespace NoteApp
                 else
                 {
                     _title = value;
-                    ModifyTime();
+                    ModificationTime = DateTime.Now;
                 }
             }
         }
@@ -70,7 +70,7 @@ namespace NoteApp
             set
             {
                 _category = value;
-                ModifyTime();
+                ModificationTime = DateTime.Now;
             }
         }
 
@@ -87,7 +87,7 @@ namespace NoteApp
             set
             {
                 _text = value;
-                ModifyTime();
+                ModificationTime = DateTime.Now;
             }
         }
 
@@ -102,7 +102,7 @@ namespace NoteApp
         public DateTime ModificationTime { get; private set; }
 
 
-        public Note(NoteCategory category) :this("Без названия", category, "")
+        public Note(NoteCategory category) : this("Без названия", category, "")
         {
 
         }
@@ -151,24 +151,6 @@ namespace NoteApp
         public object Clone()
         {
             return MemberwiseClone();
-        }
-
-        /// <summary>
-        /// Метод, возвращающий строковое представление названия заметки.
-        /// </summary>
-        /// <returns>Строковое представление <see cref="Title"/>.</returns>
-        public override string ToString()
-        {
-            return Title;
-        }
-
-        /// <summary>
-        /// Метод, изменяющий время последнего изменения заметки при каждом изменении 
-        /// названия, категории или текста заметки.
-        /// </summary>
-        private void ModifyTime()
-        {
-            ModificationTime = DateTime.Now;
         }
     }
 }

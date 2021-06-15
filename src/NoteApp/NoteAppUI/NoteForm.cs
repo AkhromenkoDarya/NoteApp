@@ -21,12 +21,14 @@ namespace NoteAppUI
         private bool _hasErrors = false;
 
         /// <summary>
-        /// Цвет, который принимает поле окна <see cref="NoteForm"/> содержащее некорректные данные. 
+        /// Цвет, который принимает поле окна <see cref="NoteForm"/> содержащее 
+        /// некорректные данные. 
         /// </summary>
-        private Color _errorColor = Color.FromArgb(252, 58, 90);
+        private Color _errorColor = Color.LightCoral;
 
         /// <summary>
-        /// Возвращает и задает текстовую заметку пользователя, подлежащую добавлению или редактированию. 
+        /// Возвращает и задает текстовую заметку пользователя, подлежащую добавлению или
+        /// редактированию. 
         /// </summary>
         public Note Note
         {
@@ -38,6 +40,8 @@ namespace NoteAppUI
             set
             {
                 _note = value ?? new Note();
+
+                // Отображаем в окне редактирования все данные добавляемой (редактируемой) заметки.
                 TitleTextBox.Text = _note.Title;
                 CategoryComboBox.SelectedItem = _note.Category;
                 TextBox.Text = _note.Text;
@@ -64,13 +68,15 @@ namespace NoteAppUI
                 ModificationTimeDateTimePicker.Value = Note.ModificationTime;
                 TitleTextBox.BackColor = SystemColors.Window;
                 _hasErrors = false;
-                TitleToolTip.Active = false;
+                TitleToolTip.SetToolTip(TitleTextBox, null);
             }
+
+            // В случае, если название заметки содержит более 50 символов, подсвечиваем поле ввода
+            // красным цветом и отображаем всплывающую подсказку с текстом ошибки. 
             catch (ArgumentException exception)
             {
                 TitleTextBox.BackColor = _errorColor;
                 _hasErrors = true;
-                TitleToolTip.Active = true;
                 TitleToolTip.SetToolTip(TitleTextBox, exception.Message);
             }
         }
@@ -89,6 +95,10 @@ namespace NoteAppUI
 
         private void OKButton_Click(object sender, EventArgs e)
         {
+            // Если окно редактирования не содержит никаких ошибок пользовательского ввода,
+            // сохраняем все изменения. В противном случае отображаем пользователю список ошибок,
+            // которые ему нужно исправить, чтобы можно было сохранить заметку.
+            //
             if(!_hasErrors)
             {
                 DialogResult = DialogResult.OK;
@@ -97,8 +107,8 @@ namespace NoteAppUI
             else
             {
                 MessageBox.Show("You need to correct the following data:\n\n" + 
-                    TitleToolTip.GetToolTip(TitleTextBox), "Error List", MessageBoxButtons.OK, 
-                    MessageBoxIcon.Information);
+                    TitleToolTip.GetToolTip(TitleTextBox), "Error List", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
