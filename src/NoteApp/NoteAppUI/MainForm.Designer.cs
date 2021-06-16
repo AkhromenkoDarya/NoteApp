@@ -116,7 +116,7 @@ namespace NoteAppUI
             this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RemoveButton.FlatAppearance.BorderSize = 0;
             this.RemoveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RemoveButton.Image = ((System.Drawing.Image)(resources.GetObject("RemoveButton.Image")));
+            this.RemoveButton.Image = global::NoteAppUI.Properties.Resources.RemoveImage;
             this.RemoveButton.Location = new System.Drawing.Point(127, 525);
             this.RemoveButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
             this.RemoveButton.Name = "RemoveButton";
@@ -131,7 +131,7 @@ namespace NoteAppUI
             this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddButton.FlatAppearance.BorderSize = 0;
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddButton.Image = ((System.Drawing.Image)(resources.GetObject("AddButton.Image")));
+            this.AddButton.Image = global::NoteAppUI.Properties.Resources.AddImage;
             this.AddButton.Location = new System.Drawing.Point(15, 525);
             this.AddButton.Margin = new System.Windows.Forms.Padding(15, 3, 3, 15);
             this.AddButton.Name = "AddButton";
@@ -146,7 +146,7 @@ namespace NoteAppUI
             this.EditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.EditButton.FlatAppearance.BorderSize = 0;
             this.EditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EditButton.Image = ((System.Drawing.Image)(resources.GetObject("EditButton.Image")));
+            this.EditButton.Image = global::NoteAppUI.Properties.Resources.EditImage;
             this.EditButton.Location = new System.Drawing.Point(71, 525);
             this.EditButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
             this.EditButton.Name = "EditButton";
@@ -289,7 +289,7 @@ namespace NoteAppUI
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
             this.ExitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(169, 26);
             this.ExitToolStripMenuItem.Text = "Exit";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -306,14 +306,14 @@ namespace NoteAppUI
             // AddNoteToolStripMenuItem
             // 
             this.AddNoteToolStripMenuItem.Name = "AddNoteToolStripMenuItem";
-            this.AddNoteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.AddNoteToolStripMenuItem.Size = new System.Drawing.Size(215, 26);
             this.AddNoteToolStripMenuItem.Text = "Add Note";
             this.AddNoteToolStripMenuItem.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // EditNoteToolStripMenuItem
             // 
             this.EditNoteToolStripMenuItem.Name = "EditNoteToolStripMenuItem";
-            this.EditNoteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.EditNoteToolStripMenuItem.Size = new System.Drawing.Size(215, 26);
             this.EditNoteToolStripMenuItem.Text = "Edit Note";
             this.EditNoteToolStripMenuItem.Click += new System.EventHandler(this.EditButton_Click);
             // 
@@ -321,7 +321,7 @@ namespace NoteAppUI
             // 
             this.RemoveNoteToolStripMenuItem.Name = "RemoveNoteToolStripMenuItem";
             this.RemoveNoteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.RemoveNoteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.RemoveNoteToolStripMenuItem.Size = new System.Drawing.Size(215, 26);
             this.RemoveNoteToolStripMenuItem.Text = "Remove Note";
             this.RemoveNoteToolStripMenuItem.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
@@ -337,7 +337,7 @@ namespace NoteAppUI
             // 
             this.AboutF1ToolStripMenuItem.Name = "AboutF1ToolStripMenuItem";
             this.AboutF1ToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.AboutF1ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.AboutF1ToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.AboutF1ToolStripMenuItem.Text = "About";
             this.AboutF1ToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
