@@ -41,9 +41,9 @@ namespace NoteApp
         /// <returns></returns>
         public List<Note> SortByModificationTimeAndCategory(NoteCategory category)
         {
-            var sortedNotesCategory = 
+            var sortedNotesCategory =
                 Notes.Where(note => note.Category == category).ToList();
-            var sortedNotes = 
+            var sortedNotes =
                 sortedNotesCategory.OrderByDescending(note => note.ModificationTime).ToList();
 
             return sortedNotes;
