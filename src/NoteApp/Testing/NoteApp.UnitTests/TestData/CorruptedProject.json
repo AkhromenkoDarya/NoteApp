@@ -1,0 +1,10 @@
+{
+  "Notes": [
+    {
+      "Title": "Заметка №1",
+      "Category": 3,
+      "Text": "Текст заметки
+	1-01-01T00:00:00"
+  ],
+  "CurrentNoteIndex": 0
+}

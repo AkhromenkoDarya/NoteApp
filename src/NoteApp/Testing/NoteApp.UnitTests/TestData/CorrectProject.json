@@ -1,0 +1,26 @@
+{
+  "Notes": [
+    {
+      "Title": "Заметка №1",
+      "Category": 3,
+      "Text": "Текст заметки №1",
+      "CreationTime": "0001-01-01T00:00:00",
+      "ModificationTime": "0001-01-01T00:00:00"
+    },
+    {
+      "Title": "Заметка №2",
+      "Category": 0,
+      "Text": "Текст заметки №2",
+      "CreationTime": "0001-01-01T00:00:00",
+      "ModificationTime": "0001-01-01T00:00:00"
+    },
+    {
+      "Title": "Заметка №3",
+      "Category": 5,
+      "Text": "Текст заметки №3",
+      "CreationTime": "0001-01-01T00:00:00",
+      "ModificationTime": "0001-01-01T00:00:00"
+    }
+  ],
+  "CurrentNoteIndex": 0
+}

@@ -49,11 +49,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NoteTest.cs" />
+    <Compile Include="ProjectManagerTest.cs" />
     <Compile Include="ProjectTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="TestData\CorrectProject.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="TestData\CorruptedProject.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\NoteApp\NoteApp.csproj">

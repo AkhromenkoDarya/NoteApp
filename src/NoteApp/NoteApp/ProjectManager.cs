@@ -6,38 +6,39 @@ namespace NoteApp
 {
     /// <summary>
     /// <para>Менеджер проекта.</para>
-    /// <para>Реализует метод для сохранения объекта <see cref="Project"/> в файл, метод загрузки 
-    /// объекта <see cref="Project"/> из файла, а также метод, задающий настройки для форматирования
-    /// результирующего файла.</para>
+    /// <para>Реализует метод для сохранения объекта <see cref="Project"/> в файл, 
+    /// метод загрузки объекта <see cref="Project"/> из файла, а также метод, задающий 
+    /// настройки для форматирования результирующего файла.</para>
     /// </summary>
     public static class ProjectManager
     {
         /// <summary>
-        /// Имя файла, в который осуществляется сохранение и из которого производится загрузка 
-        /// объекта <see cref="Project"/>.
+        /// Имя файла, в который осуществляется сохранение и из которого производится 
+        /// загрузка объекта <see cref="Project"/>.
         /// </summary>
-        private const string Filename = "NoteApp.notes";
+        private const string Filename = @"NoteApp.notes";
 
         /// <summary>
-        /// Возвращает и задает путь по умолчанию к файлу, имя которого задано закрытой константой 
-        /// <see cref="Filename"/>. 
+        /// Возвращает и задает путь по умолчанию к файлу, имя которого задано закрытой 
+        /// константой <see cref="Filename"/>. 
         /// </summary>
-        public static string DefaultPath { get; set; } = 
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), 
-                "NoteApp", Filename);
+        public static string DefaultPath { get; set; } = Environment.GetFolderPath(
+            Environment.SpecialFolder.ApplicationData) + @"\Akhromenko\NoteApp\" +
+            Filename;
 
         /// <summary>
-        /// Метод, осуществляющий сохранение объекта <see cref="Project"/> в файл, имя которого задано 
-        /// закрытой константой <see cref="Filename"/>.
+        /// Метод, осуществляющий сохранение объекта <see cref="Project"/> в файл, 
+        /// имя которого задано закрытой константой <see cref="Filename"/>.
         /// </summary>
         /// <param name="data">Объект "Проект", который требуется сериализовать.</param>
-        /// <param name="path"><para>Путь к файлу, в который осуществляется сохранение данных.</para> 
+        /// <param name="path"><para>Путь к файлу, в который осуществляется сохранение 
+        /// данных.</para> 
         /// <para>Путь по умолчанию указан в <see cref="DefaultPath"/>.</para></param>
         public static void SaveToFile(Project data, string path)
         {
-            // Если какой-либо каталог (и/или подкаталоги), указанные в пути к файлу, в который
-            // необходимо сохранить данные, не существует, то предварительно создаем этот каталог
-            // (и/или подкаталоги).
+            // Если какой-либо каталог (и/или подкаталоги), указанные в пути к файлу,
+            // в который необходимо сохранить данные, не существует, то предварительно
+            // создаем этот каталог (и/или подкаталоги).
             //
             if (!Directory.Exists(Path.GetDirectoryName(path)))
             {
@@ -55,18 +56,20 @@ namespace NoteApp
         }
 
         /// <summary>
-        /// Метод, осуществляющий загрузку данных из файла, имя которого задано закрытой константой 
-        /// <see cref="Filename"/>, в объект <see cref="Project"/>.
+        /// Метод, осуществляющий загрузку данных из файла, имя которого задано закрытой 
+        /// константой <see cref="Filename"/>, в объект <see cref="Project"/>.
         /// </summary>
-        /// <param name="path"><para>Путь к файлу, из которого осуществляется загрузка данных.</para> 
+        /// <param name="path"><para>Путь к файлу, из которого осуществляется загрузка 
+        /// данных.</para> 
         /// <para>Путь по умолчанию указан в <see cref="DefaultPath"/>.</para></param>
-        /// <returns>Объект <see cref="Project"/>, в который помещен результат десериализации.</returns>
+        /// <returns>Объект <see cref="Project"/>, в который помещен результат 
+        /// десериализации.</returns>
         public static Project LoadFromFile(string path)
         {
             Project project = null;
 
-            // Если файл, из которого необходимо загрузить данные, не существует, то возвращаем объект
-            // класса Project, созданный конструктором по умолчанию.
+            // Если файл, из которого необходимо загрузить данные, не существует, то
+            // возвращаем объект класса Project, созданный конструктором по умолчанию.
             //
             if (!File.Exists(path))
             {
@@ -76,8 +79,9 @@ namespace NoteApp
             JsonSerializer serializer = new JsonSerializer();
             ConfigureSettings(serializer);
 
-            // В случае возникновения любых исключений в процессе открытия потока для чтения из файла
-            // также возвращаем объект класса Project, созданный конструктором по умолчанию.
+            // В случае возникновения любых исключений в процессе открытия потока для
+            // чтения из файла также возвращаем объект класса Project, созданный
+            // конструктором по умолчанию.
             //
             try
             {
@@ -99,12 +103,10 @@ namespace NoteApp
         /// <summary>
         /// Метод, задающий настройки для форматирования результирующего файла JSON.
         /// </summary>
-        /// <param name="serializer"> Объект класса <see cref="JsonSerializer"/>, для которого 
-        /// необходимо задать настройки.</param>
+        /// <param name="serializer"> Объект класса <see cref="JsonSerializer"/>, для 
+        /// которого необходимо задать настройки.</param>
         private static void ConfigureSettings(JsonSerializer serializer)
         {
-            // Настраиваем форматирование в итоговом файле (автоматическую табуляцию вложенных
-            // типов) для лучшего восприятия текста.
             serializer.Formatting = Formatting.Indented;
         }
     }
