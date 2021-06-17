@@ -24,30 +24,6 @@ namespace NoteApp.UnitTests
             _project.Notes = GetUnorderedNotes();
         }
 
-        /// <summary>
-        /// Метод, который возвращает список заметок, не упорядоченный по времени 
-        /// их последнего изменения.
-        /// </summary> 
-        /// <returns></returns>
-        private List<Note> GetUnorderedNotes()
-        {
-            return new List<Note>
-            {
-                new Note("Заметка №1", NoteCategory.Finance, "Текст заметки №1",
-                    new DateTime(2021, 07, 07, 12, 40, 25),
-                    new DateTime(2021, 07, 07, 15, 20, 00)),
-                new Note("Заметка №2", NoteCategory.Work, "Текст заметки №2",
-                    new DateTime(2021, 07, 07, 12, 40, 25),
-                    new DateTime(2021, 08, 08, 22, 05, 38)),
-                new Note("Заметка №3", NoteCategory.People, "Текст заметки №3",
-                    new DateTime(2021, 07, 07, 12, 40, 25),
-                    new DateTime(2021, 09, 09, 08, 15, 10)),
-                new Note("Заметка №4", NoteCategory.Work, "Текст заметки №4",
-                    new DateTime(2021, 07, 07, 12, 40, 25),
-                    new DateTime(2021, 10, 10, 18, 00, 53))
-            };
-        }
-
         [Test(Description = "Позитивный тест геттера Notes")]
         public void Notes_CorrectValue_ReturnsSameValue()
         {
@@ -166,6 +142,30 @@ namespace NoteApp.UnitTests
 
             // Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Метод, который возвращает список заметок, не упорядоченный по времени 
+        /// их последнего изменения.
+        /// </summary> 
+        /// <returns></returns>
+        private List<Note> GetUnorderedNotes()
+        {
+            return new List<Note>
+            {
+                new Note("Заметка №1", NoteCategory.Finance, "Текст заметки №1",
+                    new DateTime(2021, 07, 07, 12, 40, 25),
+                    new DateTime(2021, 07, 07, 15, 20, 00)),
+                new Note("Заметка №2", NoteCategory.Work, "Текст заметки №2",
+                    new DateTime(2021, 07, 07, 12, 40, 25),
+                    new DateTime(2021, 08, 08, 22, 05, 38)),
+                new Note("Заметка №3", NoteCategory.People, "Текст заметки №3",
+                    new DateTime(2021, 07, 07, 12, 40, 25),
+                    new DateTime(2021, 09, 09, 08, 15, 10)),
+                new Note("Заметка №4", NoteCategory.Work, "Текст заметки №4",
+                    new DateTime(2021, 07, 07, 12, 40, 25),
+                    new DateTime(2021, 10, 10, 18, 00, 53))
+            };
         }
     }
 }

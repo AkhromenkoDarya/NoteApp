@@ -49,31 +49,6 @@ namespace NoteApp.UnitTests
         private readonly string _defaultPath = Environment.GetFolderPath(
             Environment.SpecialFolder.ApplicationData) + @"\Akhromenko\NoteApp\NoteApp.notes";
 
-        /// <summary>
-        /// Метод для создания экземпляра <see cref="Project"/>, содержащего список 
-        /// из 3-х заметок.
-        /// </summary>
-        /// <returns> Экземпляр <see cref="Project"/>.</returns>
-        private Project GetCorrectProject()
-        {
-            var correctProject = new Project();
-
-            correctProject.Notes.AddRange
-            (
-                new List<Note>
-                {
-                    new Note("Заметка №1", NoteCategory.Home, "Текст заметки №1",
-                        new DateTime(), new DateTime()),
-                    new Note("Заметка №2", NoteCategory.Documents, "Текст заметки №2",
-                        new DateTime(), new DateTime()),
-                    new Note("Заметка №3", NoteCategory.Sundry, "Текст заметки №3",
-                        new DateTime(), new DateTime())
-                }
-            );
-
-            return correctProject;
-        }
-
         [Test(Description = "Позитивный тест геттера DefaultPath")]
         public void DefaultPath_CorrectValue_ReturnsSameValue()
         {
@@ -171,6 +146,31 @@ namespace NoteApp.UnitTests
             // Assert
             Assert.IsNotNull(actualProject);
             Assert.AreEqual(actualProject.Notes.Count, 0);
+        }
+
+        /// <summary>
+        /// Метод для создания экземпляра <see cref="Project"/>, содержащего список 
+        /// из 3-х заметок.
+        /// </summary>
+        /// <returns> Экземпляр <see cref="Project"/>.</returns>
+        private Project GetCorrectProject()
+        {
+            var correctProject = new Project();
+
+            correctProject.Notes.AddRange
+            (
+                new List<Note>
+                {
+                    new Note("Заметка №1", NoteCategory.Home, "Текст заметки №1",
+                        new DateTime(), new DateTime()),
+                    new Note("Заметка №2", NoteCategory.Documents, "Текст заметки №2",
+                        new DateTime(), new DateTime()),
+                    new Note("Заметка №3", NoteCategory.Sundry, "Текст заметки №3",
+                        new DateTime(), new DateTime())
+                }
+            );
+
+            return correctProject;
         }
     }
 }
