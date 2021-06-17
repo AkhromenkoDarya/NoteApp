@@ -8,30 +8,27 @@ namespace NoteApp.UnitTests
     [TestFixture]
     class ProjectTest
     {
-        /// <summary>
-        /// Экземпляр <see cref="Project"/>, необходимый для работы тестов.
-        /// </summary>
-        private Project _project;
-
-        /// <summary>
-        /// Метод, выполняющийся каждый раз перед запуском каждого теста.
-        /// <para>Создает экземпляр <see cref="Project"/>.</para>
-        /// </summary>
-        [SetUp]
-        public void InitProject()
+       /// <summary>
+       /// Метод для инициализации тестового экземпляра <see cref="Project"/>.
+       /// </summary>
+       /// <returns>Тестовый экземпляр <see cref="Project"/>.</returns>
+        public Project InitProject()
         {
-            _project = new Project();
-            _project.Notes = GetUnorderedNotes();
+            var project = new Project();
+            project.Notes = GetUnorderedNotes();
+
+            return project;
         }
 
         [Test(Description = "Позитивный тест геттера Notes")]
         public void Notes_CorrectValue_ReturnsSameValue()
         {
             // Setup
+            var project = InitProject();
             var expected = GetUnorderedNotes();
 
             // Act
-            var actual = _project.Notes;
+            var actual = project.Notes;
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -41,11 +38,12 @@ namespace NoteApp.UnitTests
         public void Notes_CorrectValue_SetsValueCorrectly()
         {
             // Setup
-            var expected = _project.Notes;
+            var project = InitProject();
+            var expected = project.Notes;
 
             // Act
-            _project.Notes = expected;
-            var actual = _project.Notes;
+            project.Notes = expected;
+            var actual = project.Notes;
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -55,10 +53,11 @@ namespace NoteApp.UnitTests
         public void CurrentNoteIndex_CorrectValue_ReturnsSameValue()
         {
             // Setup
+            var project = InitProject();
             var expected = 0;
 
             // Act
-            var actual = _project.CurrentNoteIndex;
+            var actual = project.CurrentNoteIndex;
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -67,15 +66,17 @@ namespace NoteApp.UnitTests
         [Test(Description = "Позитивный тест сеттера SelectedNote")]
         public void CurrentNoteIndex_CorrectValue_SetsValueCorrectly()
         {
+            var project = InitProject();
+
             var currentNote = new Note("Заметка №2", NoteCategory.Work,
                 "Текст заметки №2", new DateTime(2021, 07, 07, 12, 40, 25),
                 new DateTime(2021, 08, 08, 22, 05, 38));
 
-            var expected = _project.Notes.IndexOf(currentNote);
+            var expected = project.Notes.IndexOf(currentNote);
 
             // Act
-            _project.CurrentNoteIndex = expected;
-            var actual = _project.CurrentNoteIndex;
+            project.CurrentNoteIndex = expected;
+            var actual = project.CurrentNoteIndex;
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -85,6 +86,8 @@ namespace NoteApp.UnitTests
         public void SortByModificationTime_ReturnsSortedNotes()
         {
             // Setup
+            var project = InitProject();
+
             var expected = new List<Note>
             {
                 new Note("Заметка №4", NoteCategory.Work, "Текст заметки №4",
@@ -102,7 +105,7 @@ namespace NoteApp.UnitTests
             };
 
             // Act
-            var actual = _project.SortByModificationTime();
+            var actual = project.SortByModificationTime();
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -113,6 +116,8 @@ namespace NoteApp.UnitTests
         public void SortByModificationTimeAndCategory_ReturnsSortedNotes()
         {
             // Setup
+            var project = InitProject();
+
             var expected = new List<Note>
             {
                 new Note("Заметка №4", NoteCategory.Work, "Текст заметки №4",
@@ -124,7 +129,7 @@ namespace NoteApp.UnitTests
             };
 
             // Act
-            var actual = _project.SortByModificationTimeAndCategory(NoteCategory.Work);
+            var actual = project.SortByModificationTimeAndCategory(NoteCategory.Work);
 
             // Assert
             Assert.AreEqual(expected, actual);
@@ -135,10 +140,11 @@ namespace NoteApp.UnitTests
         public void SortByModificationTimeAndCategory_NoSpecifiedCategory()
         {
             // Setup
+            var project = InitProject();
             var expected = new List<Note>();
 
             // Act
-            var actual = _project.SortByModificationTimeAndCategory(NoteCategory.Sundry);
+            var actual = project.SortByModificationTimeAndCategory(NoteCategory.Sundry);
 
             // Assert
             Assert.AreEqual(expected, actual);
