@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
-using NoteApp;
+using NoteApp.Model;
 
-namespace NoteAppUI
+namespace NoteApp.UI
 {
     /// <summary>
     /// Окно создания/редактирования текстовой заметки пользователя. 

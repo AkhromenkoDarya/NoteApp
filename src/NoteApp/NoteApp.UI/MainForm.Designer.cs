@@ -1,5 +1,5 @@
 ﻿
-namespace NoteAppUI
+namespace NoteApp.UI
 {
     partial class MainForm
     {
@@ -65,8 +65,8 @@ namespace NoteAppUI
             // 
             // TwoColumnLayoutSplitContainer
             // 
-            this.TwoColumnLayoutSplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.TwoColumnLayoutSplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TwoColumnLayoutSplitContainer.Location = new System.Drawing.Point(0, 31);
             this.TwoColumnLayoutSplitContainer.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -99,8 +99,8 @@ namespace NoteAppUI
             // 
             // NotesListBox
             // 
-            this.NotesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.NotesListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NotesListBox.FormattingEnabled = true;
             this.NotesListBox.ItemHeight = 16;
@@ -116,7 +116,7 @@ namespace NoteAppUI
             this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.RemoveButton.FlatAppearance.BorderSize = 0;
             this.RemoveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RemoveButton.Image = global::NoteAppUI.Properties.Resources.RemoveImage;
+            this.RemoveButton.Image = global::NoteApp.UI.Properties.Resources.RemoveImage;
             this.RemoveButton.Location = new System.Drawing.Point(127, 525);
             this.RemoveButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
             this.RemoveButton.Name = "RemoveButton";
@@ -131,7 +131,7 @@ namespace NoteAppUI
             this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.AddButton.FlatAppearance.BorderSize = 0;
             this.AddButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AddButton.Image = global::NoteAppUI.Properties.Resources.AddImage;
+            this.AddButton.Image = global::NoteApp.UI.Properties.Resources.AddImage;
             this.AddButton.Location = new System.Drawing.Point(15, 525);
             this.AddButton.Margin = new System.Windows.Forms.Padding(15, 3, 3, 15);
             this.AddButton.Name = "AddButton";
@@ -146,7 +146,7 @@ namespace NoteAppUI
             this.EditButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.EditButton.FlatAppearance.BorderSize = 0;
             this.EditButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EditButton.Image = global::NoteAppUI.Properties.Resources.EditImage;
+            this.EditButton.Image = global::NoteApp.UI.Properties.Resources.EditImage;
             this.EditButton.Location = new System.Drawing.Point(71, 525);
             this.EditButton.Margin = new System.Windows.Forms.Padding(3, 3, 3, 15);
             this.EditButton.Name = "EditButton";
@@ -169,8 +169,8 @@ namespace NoteAppUI
             // 
             // CategoryComboBox
             // 
-            this.CategoryComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.CategoryComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CategoryComboBox.FormattingEnabled = true;
             this.CategoryComboBox.Location = new System.Drawing.Point(128, 3);
@@ -252,8 +252,8 @@ namespace NoteAppUI
             // 
             // TextBox
             // 
-            this.TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox.Location = new System.Drawing.Point(8, 88);
             this.TextBox.Margin = new System.Windows.Forms.Padding(3, 3, 15, 15);

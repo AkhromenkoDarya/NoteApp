@@ -63,9 +63,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\NoteApp\NoteApp.csproj">
+    <ProjectReference Include="..\..\NoteApp.Model\NoteApp.Model.csproj">
       <Project>{3a6b0943-806b-43f0-8334-6c95156d1667}</Project>
-      <Name>NoteApp</Name>
+      <Name>NoteApp.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

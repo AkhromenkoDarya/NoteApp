@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace NoteAppUI
+namespace NoteApp.UI
 {
     static class Program
     {

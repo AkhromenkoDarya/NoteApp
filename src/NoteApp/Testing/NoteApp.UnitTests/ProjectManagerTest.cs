@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Collections.Generic;
 using NUnit.Framework;
+using NoteApp.Model;
 
 namespace NoteApp.UnitTests
 {

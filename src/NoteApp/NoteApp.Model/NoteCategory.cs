@@ -1,4 +1,4 @@
-﻿namespace NoteApp
+﻿namespace NoteApp.Model
 {
     /// <summary>
     /// Категория заметки.

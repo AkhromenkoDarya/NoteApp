@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using System.Diagnostics;
 
-namespace NoteAppUI
+namespace NoteApp.UI
 {
     /// <summary>
     /// Окно "О программе".

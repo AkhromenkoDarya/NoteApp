@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace NoteApp
+namespace NoteApp.Model
 {
     /// <summary>
     /// <para>Проект.</para>

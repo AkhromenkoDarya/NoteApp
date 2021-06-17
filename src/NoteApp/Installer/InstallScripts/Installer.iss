@@ -2,7 +2,7 @@
 #define MyAppVersion "1.0.0"
 #define MyAppPublisher "Akhromenko Darya"
 #define MyAppURL "https://github.com/AkhromenkoDarya/NoteApp"
-#define MyAppExeName "NoteAppUI.exe"
+#define MyAppExeName "NoteApp.UI.exe"
 #define UninstallName "unins000.exe"
 #define StartMenuFolderName "NoteApp"
 #define AppIconName "NoteIcon.ico"
@@ -22,7 +22,7 @@ ChangesAssociations = yes
 DisableProgramGroupPage = yes
 OutputDir = Installers
 OutputBaseFilename = NoteAppSetup {#SetupSetting("MyAppVersion") + GetDateTimeString('dd-mm-yyyy hh-nn-ss', '-', ':')}
-SetupIconFile = "..\..\NoteAppUI\{#AppIconName}"
+SetupIconFile = "..\..\NoteApp.UI\{#AppIconName}"
 Compression = lzma
 SolidCompression = yes
 WizardStyle = modern
@@ -40,7 +40,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "Release\*.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Release\*.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\NoteAppUI\{#AppIconName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\NoteApp.UI\{#AppIconName}"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{commonstartmenu}\{#StartMenuFolderName}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename:"{app}\{#AppIconName}"

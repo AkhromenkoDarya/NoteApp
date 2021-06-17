@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace NoteApp
+namespace NoteApp.Model
 {
     /// <summary>
     /// <para>Менеджер проекта.</para>

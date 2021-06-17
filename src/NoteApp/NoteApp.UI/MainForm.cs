@@ -2,9 +2,9 @@
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Linq;
-using NoteApp;
+using NoteApp.Model;
 
-namespace NoteAppUI
+namespace NoteApp.UI
 {
     /// <summary>
     /// Главное окно приложения.

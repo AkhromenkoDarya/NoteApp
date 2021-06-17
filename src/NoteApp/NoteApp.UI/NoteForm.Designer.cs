@@ -1,5 +1,5 @@
 ﻿
-namespace NoteAppUI
+namespace NoteApp.UI
 {
     partial class NoteForm
     {
@@ -106,7 +106,7 @@ namespace NoteAppUI
             // 
             // TitleTextBox
             // 
-            this.TitleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.TitleTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TitleTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.TitleTextBox.Cursor = System.Windows.Forms.Cursors.Default;
@@ -128,8 +128,8 @@ namespace NoteAppUI
             // 
             // TextBox
             // 
-            this.TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.TextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox.Location = new System.Drawing.Point(15, 101);
             this.TextBox.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
