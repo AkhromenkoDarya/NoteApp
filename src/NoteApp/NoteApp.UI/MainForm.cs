@@ -246,10 +246,6 @@ namespace NoteApp.UI
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Перед закрытием приложения запоминаем текущую заметку, чтобы отобразить ее при
-            // следующем запуске приложения.
-            UpdateCurrentNoteIndex();
-            ProjectManager.SaveToFile(_project, ProjectManager.DefaultPath);
             Close();
         }
 

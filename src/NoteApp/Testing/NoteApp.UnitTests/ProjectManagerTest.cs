@@ -20,25 +20,25 @@ namespace NoteApp.UnitTests
         private static readonly string DirectoryInformation = Path.GetDirectoryName(LocalPath);
 
         /// <summary>
-        /// Путь к файлу, содержащему проект <see cref="Project"/ с корректными данными>.
+        /// Путь к файлу, содержащему проект <see cref="Project"/> с корректными данными>.
         /// </summary>
         private readonly string _correctProjectFileName = DirectoryInformation +
             @"\TestData\CorrectProject.json";
 
         /// <summary>
-        /// Путь к файлу, содержащему проект <see cref="Project"/ с поврежденными данными>.
+        /// Путь к файлу, содержащему проект <see cref="Project"/> с поврежденными данными>.
         /// </summary>
         private readonly string _corruptedProjectFilename = DirectoryInformation +
             @"\TestData\CorruptedProject.json";
 
         /// <summary>
-        /// Путь к папке, в которой лежит сохраняемый файл проекта <see cref="Project".
+        /// Путь к папке, в которой лежит сохраняемый файл проекта <see cref="Project"/>.
         /// </summary>
         private static readonly string OutputDirectoryPath = DirectoryInformation +
             @"\Output";
 
         /// <summary>
-        /// Путь к сохраняемому файлу проекта <see cref="Project".
+        /// Путь к сохраняемому файлу проекта <see cref="Project"/>.
         /// </summary>
         private readonly string _outputProjectFilename = OutputDirectoryPath +
             @"\SavingProject.json";
