@@ -100,7 +100,7 @@ namespace NoteAppUI
         /// </summary>
         private void DisplayEmptyNote()
         {
-            TitleLabel.Text = @"Без названия";
+            TitleLabel.Text = @"";
             SelectedCategoryLabel.Text = @"";
             TextBox.Text = @"";
             CreationTimeDateTimePicker.Value = DateTime.Now;
@@ -150,6 +150,7 @@ namespace NoteAppUI
             }
 
             var selectedNote = _filteredNotes[selectedIndex];
+            var realProjectIndex = _project.Notes.IndexOf(selectedNote);
             var noteForm = new NoteForm();
 
             // При редактировании заметки работаем с ее копией.
@@ -165,8 +166,8 @@ namespace NoteAppUI
 
                 // Заменяем предыдущую версию заметки новой, отредактированной версией.
                 //
-                _project.Notes.RemoveAt(selectedIndex);
-                _project.Notes.Insert(selectedIndex, editedNote);
+                _project.Notes.RemoveAt(realProjectIndex);
+                _project.Notes.Insert(realProjectIndex, editedNote);
 
                 UpdateNotesListBox();
                 UpdateCurrentNoteIndex();
@@ -184,6 +185,7 @@ namespace NoteAppUI
             }
 
             var selectedNote = (Note)NotesListBox.SelectedItem;
+            var realProjectIndex = _project.Notes.IndexOf(selectedNote);
 
             // Перед удалением текущей заметки запрашиваем подтверждение у пользователя.
             DialogResult result = MessageBox.Show($"Do you really want to remove " +
@@ -194,7 +196,7 @@ namespace NoteAppUI
             //
             if (result == DialogResult.OK)
             {
-                _project.Notes.RemoveAt(selectedIndex);
+                _project.Notes.RemoveAt(realProjectIndex);
 
                 UpdateNotesListBox();
                 UpdateCurrentNoteIndex();
