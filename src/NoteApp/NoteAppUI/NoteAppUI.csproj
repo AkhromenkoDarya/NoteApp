@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>NoteIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -105,6 +108,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NoteIcon.ico" />
     <Content Include="Resources\NoteIcon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -117,4 +121,11 @@
     <None Include="Resources\RemoveImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>rmdir /s /q $(SolutionDir)Installer\InstallScripts\Release
+md $(SolutionDir)Installer\InstallScripts\Release
+md $(SolutionDir)Installer\InstallScripts\Installers
+xcopy $(ProjectDir)$(OutDir)*.exe $(SolutionDir)Installer\InstallScripts\Release
+xcopy $(ProjectDir)$(OutDir)*.dll $(SolutionDir)Installer\InstallScripts\Release</PostBuildEvent>
+  </PropertyGroup>
 </Project>
