@@ -29,7 +29,6 @@ WizardStyle = modern
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
-Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
 
 [Dirs]
 Name: "{commonstartmenu}\{#StartMenuFolderName}"
