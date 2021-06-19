@@ -7,7 +7,8 @@ using NoteApp.Model;
 
 namespace NoteApp.UnitTests
 {
-    class ProjectManagerTest
+    [TestFixture]
+    class ProjectManagerTests
     {
         /// <summary>
         /// Расположение сборки, которая содержит код, исполняемый в данный момент.

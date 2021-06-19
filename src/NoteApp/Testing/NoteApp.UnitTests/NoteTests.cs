@@ -4,7 +4,8 @@ using NoteApp.Model;
 
 namespace NoteApp.UnitTests
 {
-    public class NoteTest
+    [TestFixture]
+    public class NoteTests
     {
         /// <summary>
         /// Время создания заметки.

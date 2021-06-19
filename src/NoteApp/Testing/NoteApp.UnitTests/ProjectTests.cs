@@ -6,7 +6,7 @@ using NoteApp.Model;
 namespace NoteApp.UnitTests
 {
     [TestFixture]
-    class ProjectTest
+    class ProjectTests
     {
        /// <summary>
        /// Метод для инициализации тестового экземпляра <see cref="Project"/>.
