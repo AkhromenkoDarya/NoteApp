@@ -7,7 +7,8 @@ namespace NoteApp.Model
     /// <para>Текстовая заметка пользователя.</para>
     /// <para>Хранит информацию о названии, категории, тексте, времени создания и времени 
     /// последнего изменения заметки.</para>
-    /// <para>Реализует интерфейс <see cref="ICloneable"/>.</para>
+    /// <para>Реализует интерфейсы <see cref="ICloneable"/> и <see cref="IEquatable{T}"/>.
+    /// </para>
     /// </summary>
     public class Note : ICloneable, IEquatable<Note>
     {
@@ -26,6 +27,16 @@ namespace NoteApp.Model
         /// Текст заметки.
         /// </summary>
         private string _text;
+
+        /// <summary>
+        /// Время создания заметки. Значение по умолчанию - текущее время.
+        /// </summary>
+        private DateTime _creationTime = DateTime.Now;
+
+        /// <summary>
+        /// Время последнего изменения заметки.
+        /// </summary>
+        private DateTime _modificationTime;
 
         /// <summary>
         /// Возвращает и задает название заметки.
@@ -93,12 +104,34 @@ namespace NoteApp.Model
         /// <summary>
         /// Возвращает и задает время создания заметки.
         /// </summary>
-        public DateTime CreationTime { get; set; } = DateTime.Now;
+        public DateTime CreationTime
+        {
+            get
+            {
+                return _creationTime;
+            }
+
+            set
+            {
+                _creationTime = value;
+            }
+        }
 
         /// <summary>
         /// Возвращает и задает время последнего изменения заметки.
         /// </summary>
-        public DateTime ModificationTime { get; set; }
+        public DateTime ModificationTime 
+        { 
+            get
+            {
+                return _modificationTime;
+            }
+
+            set
+            {
+                _modificationTime = value;
+            }
+        }
 
         /// <summary>
         /// Создает экземпляр <see cref="Note"/>.
